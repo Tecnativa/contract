@@ -15,3 +15,4 @@ from . import res_company
 from . import res_config_settings
 from . import contract_terminate_reason
 from . import ir_ui_view
+from . import mail_message
