@@ -9,6 +9,7 @@
             </field>
             <field name="name">Invoices</field>
             <field name="res_model">account.invoice</field>
+            <field name="domain">[('contract_id','=',active_id)]</field>
             <field name="view_id" ref="account.invoice_tree" />
             <field name="search_view_id" ref="account.view_account_invoice_filter" />
         </record>
