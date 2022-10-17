@@ -1,7 +1,11 @@
 # Copyright 2022 ForgeFlow - Joan Mateu
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
+from odoo.tests import new_test_user
 from odoo.tests.common import SavepointCase
+
+from odoo.addons.contract.tests.test_contract import TestContractBase
 
 
 class TestSaleContract(SavepointCase):
@@ -47,6 +51,7 @@ class TestSaleContract(SavepointCase):
                 {
                     "name": "Test Contract",
                     "partner_id": self.partner.id,
+                    "user_id": user.id,
                     "pricelist_id": self.partner.property_product_pricelist.id,
                     "line_recurrence": False,
                     "contract_type": "sale",
@@ -116,3 +121,31 @@ class TestSaleContract(SavepointCase):
             .search([])
         )
         self.assertEqual(contract_modify.name, "Test_contract_to_modify")
+
+
+class TestSaleContractMisc(TestContractBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user = new_test_user(
+            cls.env,
+            login="test-user",
+            groups="sales_team.group_sale_salesman",
+        )
+        cls.team = cls.env["crm.team"].create(
+            {
+                "name": "Test team",
+                "user_id": cls.user.id,
+                "member_ids": [(6, 0, [cls.user.id])],
+            }
+        )
+
+    def test_contract_invoice_info(self):
+        self.acct_line._onchange_product_id()
+        self.acct_line.price_unit = 100.0
+        self.contract.partner_id = self.partner.id
+        self.contract.user_id = self.user
+        self.contract.recurring_create_invoice()
+        self.invoice_monthly = self.contract._get_related_invoices()
+        self.assertEqual(self.invoice_monthly.invoice_user_id, self.user)
+        self.assertEqual(self.invoice_monthly.team_id, self.team)
