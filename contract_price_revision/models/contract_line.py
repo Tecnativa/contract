@@ -3,12 +3,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.fields import Date
 
 
 class ContractLine(models.Model):
     _inherit = "contract.line"
 
-    previous_price = fields.Float(
+    previous_price = fields.Monetary(
         string="Previous price",
         related="predecessor_contract_line_id.price_unit",
         readonly=True,
@@ -30,7 +31,7 @@ class ContractLine(models.Model):
 
     @api.depends_context("date_start")
     def _compute_price_can_be_revised(self):
-        date_start = self.env.context.get("date_start", fields.Datetime.now())
+        date_start = self.env.context.get("date_start", Date.today())
         lines_can_be_revised = self.filtered(
             lambda line: not line.never_revise_price
             and not line.automatic_price
