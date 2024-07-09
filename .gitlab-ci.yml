@@ -4,6 +4,6 @@ include:
 
 variables:
   DEPLOY_DEMO:
-    value: 1
+    value: 0
   DEPLOY_PROD:
-    value: 1
+    value: 0
