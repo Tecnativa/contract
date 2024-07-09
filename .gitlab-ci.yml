@@ -1,0 +1,9 @@
+include:
+  - project: Tecnativa/ci-templates
+    file: /doodba/v2.yml
+
+variables:
+  DEPLOY_DEMO:
+    value: 1
+  DEPLOY_PROD:
+    value: 1

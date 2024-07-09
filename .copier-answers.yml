@@ -1,0 +1,43 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v7.0.1
+_src_path: git@github.com:Tecnativa/doodba-copier-template.git
+backup_deletion: false
+backup_dst: boto3+s3://tecnativa-blegal-bkp
+backup_email_from: intranet@blegal.cloud
+backup_email_to: alerts@tecnativa.com
+backup_image_version: latest
+backup_tz: UTC
+cidr_whitelist: null
+domains_prod:
+  - cert_resolver: letsencrypt
+    hosts:
+      - intranet.blegal.cloud
+domains_test:
+  - cert_resolver: letsencrytp
+    hosts:
+      - demo-blegal.tecnativa.com
+gitlab_url: https://gitlab.tecnativa.com/Tecnativa/blegal-odoo
+odoo_dbfilter: ^prod
+odoo_initial_lang: en_US
+odoo_listdb: false
+odoo_oci_image: registry.tecnativa.com/tecnativa/blegal-odoo/odoo
+odoo_proxy: traefik
+odoo_version: 17.0
+paths_without_crawlers:
+  - /web
+  - /website/info
+postgres_dbname: prod
+postgres_exposed: false
+postgres_username: odoo
+postgres_version: 15
+project_author: Tecnativa
+project_license: BSL-1.0
+project_name: blegal-odoo
+smtp_canonical_default: ""
+smtp_canonical_domains: []
+smtp_default_from: intranet@blegal.cloud
+smtp_relay_host: mx.blegal.cloud
+smtp_relay_port: 587
+smtp_relay_user: intranet@blegal.cloud
+smtp_relay_version: "13"
+traefik_version: 2
