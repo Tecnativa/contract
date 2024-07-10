@@ -15,7 +15,7 @@ domains_prod:
 domains_test:
   - cert_resolver: letsencrytp
     hosts:
-      - demo-blegal.tecnativa.com
+      - intranet-test.blegal.cloud
 gitlab_url: https://gitlab.tecnativa.com/Tecnativa/blegal-odoo
 odoo_dbfilter: ^prod
 odoo_initial_lang: en_US

@@ -15,7 +15,7 @@ services:
       SMTP_PORT: "1025"
       SMTP_SERVER: smtplocal
     restart: unless-stopped
-    hostname: "demo-blegal.tecnativa.com"
+    hostname: "intranet-test.blegal.cloud"
     depends_on:
       - db
       - smtp
@@ -24,37 +24,37 @@ services:
       globalwhitelist_shared:
       inverseproxy_shared:
     labels:
-      doodba.domain.main: "demo-blegal.tecnativa.com"
+      doodba.domain.main: "intranet-test.blegal.cloud"
       traefik.enable: "true"
-      traefik.domain: "demo-blegal.tecnativa.com"
+      traefik.domain: "intranet-test.blegal.cloud"
       traefik.forbiddenCrawlers-0.frontend.headers.customResponseHeaders:
         "X-Robots-Tag:noindex, nofollow"
-      traefik.forbiddenCrawlers-0.frontend.rule: Host:demo-blegal.tecnativa.com;Path:/{anything:.*}
-      traefik.longpolling-0.frontend.rule: Host:demo-blegal.tecnativa.com;Path:/websocket,/websocket/{anything:.*}
+      traefik.forbiddenCrawlers-0.frontend.rule: Host:intranet-test.blegal.cloud;Path:/{anything:.*}
+      traefik.longpolling-0.frontend.rule: Host:intranet-test.blegal.cloud;Path:/websocket,/websocket/{anything:.*}
       traefik.longpolling-0.port: 8072
       traefik.http.services.blegal-odoo-17-0-test-main.loadbalancer.server.port: 8069
       traefik.http.services.blegal-odoo-17-0-test-longpolling.loadbalancer.server.port: 8072
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-0.rule:
-        Host(`demo-blegal.tecnativa.com`) && Path(`/websocket`)
+        Host(`intranet-test.blegal.cloud`) && Path(`/websocket`)
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-0.service: blegal-odoo-17-0-test-longpolling
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-0.middlewares:
         blegal-odoo-17-0-test-addSTS, blegal-odoo-17-0-test-forceSecure
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.rule:
-        Host(`demo-blegal.tecnativa.com`) && Path(`/websocket`)
+        Host(`intranet-test.blegal.cloud`) && Path(`/websocket`)
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.service: blegal-odoo-17-0-test-longpolling
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.middlewares:
         blegal-odoo-17-0-test-addSTS, blegal-odoo-17-0-test-forceSecure
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.tls: "true"
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.tls.certResolver: letsencrytp
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-0.rule:
-        Host(`demo-blegal.tecnativa.com`) && (PathPrefix(`/`))
+        Host(`intranet-test.blegal.cloud`) && (PathPrefix(`/`))
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-0.service: blegal-odoo-17-0-test-main
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-0.middlewares:
         blegal-odoo-17-0-test-addSTS, blegal-odoo-17-0-test-buffering,
         blegal-odoo-17-0-test-compress, blegal-odoo-17-0-test-forbid-crawlers,
         blegal-odoo-17-0-test-forceSecure
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-secure-0.rule:
-        Host(`demo-blegal.tecnativa.com`) && (PathPrefix(`/`))
+        Host(`intranet-test.blegal.cloud`) && (PathPrefix(`/`))
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-secure-0.service: blegal-odoo-17-0-test-main
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-secure-0.middlewares:
         blegal-odoo-17-0-test-addSTS, blegal-odoo-17-0-test-buffering,
@@ -86,11 +86,11 @@ services:
           - smtplocal
       inverseproxy_shared:
     labels:
-      doodba.domain.main: "demo-blegal.tecnativa.com"
+      doodba.domain.main: "intranet-test.blegal.cloud"
       traefik.docker.network: "inverseproxy_shared"
       traefik.enable: "true"
       traefik.frontend.passHostHeader: "true"
-      traefik.mailhog-0.frontend.rule: Host:demo-blegal.tecnativa.com;PathPrefixStrip:/smtpfake/
+      traefik.mailhog-0.frontend.rule: Host:intranet-test.blegal.cloud;PathPrefixStrip:/smtpfake/
       traefik.mailhog-0.port: 8025
       # Mailhog service
       traefik.http.middlewares.blegal-odoo-17-0-test-mailhog-stripprefix.stripPrefix.prefixes: /smtpfake/
@@ -104,14 +104,14 @@ services:
       traefik.http.middlewares.blegal-odoo-17-0-test-forceSecure.redirectScheme.scheme: https
       traefik.http.middlewares.blegal-odoo-17-0-test-forceSecure.redirectScheme.permanent: "true"
       traefik.http.routers.blegal-odoo-17-0-test-mailhog-0.rule:
-        Host(`demo-blegal.tecnativa.com`) && PathPrefix(`/smtpfake/`)
+        Host(`intranet-test.blegal.cloud`) && PathPrefix(`/smtpfake/`)
       traefik.http.routers.blegal-odoo-17-0-test-mailhog-0.service: blegal-odoo-17-0-test-mailhog
       traefik.http.routers.blegal-odoo-17-0-test-mailhog-0.middlewares:
         blegal-odoo-17-0-test-addSTS, blegal-odoo-17-0-test-buffering,
         blegal-odoo-17-0-test-compress, blegal-odoo-17-0-test-forbid-crawlers,
         blegal-odoo-17-0-test-forceSecure, blegal-odoo-17-0-test-mailhog-stripprefix
       traefik.http.routers.blegal-odoo-17-0-test-mailhog-secure-0.rule:
-        Host(`demo-blegal.tecnativa.com`) && PathPrefix(`/smtpfake/`)
+        Host(`intranet-test.blegal.cloud`) && PathPrefix(`/smtpfake/`)
       traefik.http.routers.blegal-odoo-17-0-test-mailhog-secure-0.service: blegal-odoo-17-0-test-mailhog
       traefik.http.routers.blegal-odoo-17-0-test-mailhog-secure-0.middlewares:
         blegal-odoo-17-0-test-addSTS, blegal-odoo-17-0-test-buffering,
