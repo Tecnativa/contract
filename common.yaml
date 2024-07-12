@@ -41,7 +41,7 @@ services:
 
   smtpreal:
     image: ghcr.io/docker-mailserver/docker-mailserver:13
-    hostname: "smtp."
+    hostname: "smtp.blegal.cloud"
     stop_grace_period: 1m
     volumes:
       - mailconfig:/tmp/docker-mailserver:z
@@ -63,8 +63,8 @@ services:
       RELAY_PORT: "587"
       RELAY_USER: "intranet@blegal.cloud"
       SMTP_ONLY: 1
-      SRS_DOMAINNAME: ""
-      SRS_EXCLUDE_DOMAINS: ""
+      SRS_DOMAINNAME: "blegal.cloud"
+      SRS_EXCLUDE_DOMAINS: "blegal.cloud"
       SRS_SENDER_CLASSES: envelope_sender,header_sender
 
   backup:

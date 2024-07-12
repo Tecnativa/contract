@@ -33,7 +33,7 @@ postgres_version: 15
 project_author: Tecnativa
 project_license: BSL-1.0
 project_name: blegal-odoo
-smtp_canonical_default: ""
+smtp_canonical_default: blegal.cloud
 smtp_canonical_domains: []
 smtp_default_from: intranet@blegal.cloud
 smtp_relay_host: mx.blegal.cloud
