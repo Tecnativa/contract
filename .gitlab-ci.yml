@@ -7,3 +7,6 @@ variables:
     value: 1
   DEPLOY_PROD:
     value: 1
+
+  ADDONS_CUSTOM: |
+    --without contract
