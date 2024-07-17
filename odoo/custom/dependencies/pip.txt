@@ -1,3 +1,5 @@
 git+https://github.com/OCA/openupgradelib.git@master
 unicodecsv
 unidecode
+odoo_test_helper
+schwifty==2024.4.0
