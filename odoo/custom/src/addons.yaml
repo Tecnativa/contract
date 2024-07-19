@@ -59,6 +59,8 @@ project:
 reporting-engine:
   - report_xlsx
   - report_xlsx_helper
+server-brand:
+  - disable_odoo_online
 server-ux:
   - base_technical_features
   - date_range
