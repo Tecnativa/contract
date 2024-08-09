@@ -35,6 +35,8 @@ contract:
   - contract
 crm:
   - crm_phonecall
+currency:
+  - currency_rate_update
 l10n-spain:
   - l10n_es_account_asset
   - l10n_es_account_statement_import_n43
