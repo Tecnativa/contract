@@ -33,6 +33,7 @@ community-data-files:
   - base_bank_from_iban
 contract:
   - contract
+  - product_contract
 crm:
   - crm_phonecall
 currency:
@@ -54,6 +55,8 @@ l10n-spain:
   - l10n_es_vat_book
 mis-builder:
   - mis_builder
+multi-company:
+  - account_invoice_inter_company
 partner-contact:
   - base_location
   - base_location_geonames_import
