@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_external_dbsource_importer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_external_dbsource_importer
+#: model:ir.model,name:base_external_dbsource_importer.model_base_external_dbsource_fields_update
+msgid "Base External Dbsource Fields To Update"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model,name:base_external_dbsource_importer.model_base_external_dbsource
+msgid "External Database Sources"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__db_source_id
+msgid "External Db Source"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource__fields_to_update_ids
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__field_ids
+msgid "Fields To Update"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__id
+msgid "ID"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource_fields_update__model_id
+msgid "Model"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model.fields,field_description:base_external_dbsource_importer.field_base_external_dbsource__only_update
+msgid "Only update values"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_importer.view_dbsource_form
+msgid "Options"
+msgstr ""
+
+#. module: base_external_dbsource_importer
+#: model:ir.model,name:base_external_dbsource_importer.model_dbsource_external_mixin
+msgid "dbsource.external.mixin"
+msgstr ""

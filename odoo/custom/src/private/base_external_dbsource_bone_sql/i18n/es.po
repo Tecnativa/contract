@@ -23,40 +23,28 @@ msgid "A generic banking mandate"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_account_account
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Account"
-msgstr "Cuenta"
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_banking_mandate__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_payment_term__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_setup_bank_manual_config__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_dbsource_a3_bone_mixin__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_category__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_product__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_bank__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_mapped__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_users__a3_key
+msgid "A3 Key"
+msgstr ""
 
 #. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Account Chart"
+#: model:ir.model,name:base_external_dbsource_bone_sql.model_dbsource_a3_bone_mixin
+msgid "A3 One Mixin"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Account moves"
-msgstr "Asientos contables"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_account_analytic_account
-msgid "Analytic Account"
-msgstr "Cuenta analítica"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Archive Other Users"
+msgid "A3 SQL"
 msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__archived_user_ids
-msgid "Archived User"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_attribute_value
-msgid "Attribute Value"
-msgstr "Valor de atributo"
 
 #. module: base_external_dbsource_bone_sql
 #: model:ir.model,name:base_external_dbsource_bone_sql.model_res_partner_bank
@@ -65,94 +53,13 @@ msgstr "Cuentas bancarias"
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Bank Journal"
-msgstr "Diario de banco"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_stock_production_lot__bone_in_date
-msgid "Bone Incoming Date"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_account__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_analytic_account__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_bank_statement_line__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_banking_mandate__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_journal__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_move__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_move_line__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_payment__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_payment_mode__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_payment_term__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_account_setup_bank_manual_config__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_dbsource_sap_bone_mixin__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_partner_delivery_zone__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_attribute__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_attribute_value__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_category__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_customerinfo__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_elaboration__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_elaboration_profile__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_pricelist__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_pricelist_item__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_product__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_secondary_unit__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_supplierinfo__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_product_template__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_bank__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_category__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_mapped__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_users__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_sale_order__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_sale_order_line__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_stock_location__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_stock_production_lot__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_stock_quant__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_stock_quant_package__bone_key
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_stock_warehouse_orderpoint__bone_key
-msgid "Bone Key"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
 msgid "Categories"
 msgstr "Categorías"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Choose a file to import..."
-msgstr "Seleccione un archivo a importar..."
 
 #. module: base_external_dbsource_bone_sql
 #: model:ir.model,name:base_external_dbsource_bone_sql.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Create Picking to move MMDA products Others (Friday)"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Create Picking to move MMDA products R|S|T (Thursday)"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Create Purchase Order"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Create picking MMDA Others"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Create picking MMDA R|S|T"
-msgstr ""
 
 #. module: base_external_dbsource_bone_sql
 #: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_mapped__create_uid
@@ -165,55 +72,14 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__date_from
-msgid "Date From"
-msgstr "Desde fecha"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__date_to
-msgid "Date To"
-msgstr "Hasta fecha"
-
-#. module: base_external_dbsource_bone_sql
-#: code:addons/base_external_dbsource_bone_sql/models/base_external_dbsource.py:0
-#, python-format
-msgid "Debe seleccionar un archivo para importar"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
 #: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_mapped__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__data_mapper_filename
-msgid "Excel file filename"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__data_mapper_file
-msgid "Excel file with data mapped"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Execute script split commercial partners"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
 #: model:ir.model,name:base_external_dbsource_bone_sql.model_base_external_dbsource
 msgid "External Database Sources"
 msgstr "Fuentes externas de la base de datos"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__account_map_file
-msgid "File account map"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__filename
-msgid "Filename"
-msgstr "Nombre de archivo"
 
 #. module: base_external_dbsource_bone_sql
 #: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_mapped__id
@@ -222,23 +88,8 @@ msgstr "ID (identificación)"
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Images"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Account Chart"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
 msgid "Import Categories"
 msgstr "Importar Categorías"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Customer Contacts"
-msgstr "Importar Contactos de Clientes"
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
@@ -247,47 +98,27 @@ msgstr "Importar Clientes"
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Inventory"
-msgstr "Importar Inventario"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Locations"
-msgstr "Importar Ubicaciones"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Lots"
-msgstr "Importar Lotes"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Orderpoints"
+msgid "Import Delivery address"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Sales"
+msgid "Import Partner Bank Account"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Secondary UOM"
+msgid "Import Partner Bank Mandate"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Supplier"
-msgstr "Importar Proveedor"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import Supplier Contacts"
+msgid "Import Payment term"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import SupplierInfo"
+msgid "Import Suppliers"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
@@ -297,52 +128,17 @@ msgstr "Importar Usuarios"
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import account moves"
-msgstr "Importar Asientos contables"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import bank journals"
-msgstr "Importar Diarios bancarios"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import customer Contacts"
-msgstr "Importar Contactos de Clientes"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
 msgid "Import customers"
 msgstr "Importar Clientes"
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import packages"
+msgid "Import delivery address"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import partner bank"
-msgstr "Importar cuentas bancarias partner"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import price lists"
-msgstr "Importar Tarifas"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import price lists items"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import product pictures from disk"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import product supplier infos"
+msgid "Import payment term"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
@@ -352,43 +148,8 @@ msgstr ""
 
 #. module: base_external_dbsource_bone_sql
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import records between dates if supported"
+msgid "Import suppliers"
 msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Import supplier Contacts"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Inventory"
-msgstr "Inventario"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_stock_location
-msgid "Inventory Locations"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_account_journal
-msgid "Journal"
-msgstr "Diario"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_account_move
-msgid "Journal Entry"
-msgstr "Asiento contable"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_account_move_line
-msgid "Journal Item"
-msgstr "Apunte contable"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_mapped____last_update
-msgid "Last Modified on"
-msgstr "Última actualización el"
 
 #. module: base_external_dbsource_bone_sql
 #: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_mapped__write_uid
@@ -401,64 +162,8 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__location_id
-msgid "Location"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Locations"
-msgstr "Ubicaciones"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_stock_production_lot
-msgid "Lot/Serial"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Lots"
-msgstr "Lotes"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Map Account"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
 #: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_res_partner_mapped__mapped_key
 msgid "Mapped Key"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Mapper Account"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_stock_warehouse_orderpoint
-msgid "Minimum Inventory Rule"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Moves"
-msgstr "Asientos"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Orderpoints"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Orders"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_stock_quant_package
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Packages"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
@@ -467,23 +172,8 @@ msgid "Partner"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Partner Bank"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
 #: model:ir.model,name:base_external_dbsource_bone_sql.model_res_partner_mapped
 msgid "Partner Mapped"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_res_partner_category
-msgid "Partner Tags"
-msgstr "Etiquetas del contacto"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_partner_delivery_zone
-msgid "Partner delivery zone"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
@@ -492,60 +182,9 @@ msgid "Partners"
 msgstr "Clientes"
 
 #. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_account_payment_mode
-msgid "Payment Modes"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
 #: model:ir.model,name:base_external_dbsource_bone_sql.model_account_payment_term
 msgid "Payment Terms"
 msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Payment mode"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Payment term"
-msgstr "Plazo de pago"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Price list items"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Price lists"
-msgstr "Tarifas"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_pricelist
-msgid "Pricelist"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_pricelist_item
-msgid "Pricelist Rule"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_product
-msgid "Product"
-msgstr "Producto"
-
-#. module: base_external_dbsource_bone_sql
-#: code:addons/base_external_dbsource_bone_sql/models/base_external_dbsource.py:0
-#, python-format
-msgid "Product %s - %s does not exist"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_attribute
-msgid "Product Attribute"
-msgstr "Atributo de producto"
 
 #. module: base_external_dbsource_bone_sql
 #: model:ir.model,name:base_external_dbsource_bone_sql.model_product_category
@@ -553,28 +192,8 @@ msgid "Product Category"
 msgstr "Categoría de producto"
 
 #. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Product Pictures Disk"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_secondary_unit
-msgid "Product Secondary Unit"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_elaboration_profile
-msgid "Product elaboration profiles"
-msgstr "Perfiles de elaboración de producto"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_elaboration
-msgid "Product elaborations"
+#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: base_external_dbsource_bone_sql
@@ -583,101 +202,11 @@ msgid "Products"
 msgstr "Productos"
 
 #. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_stock_quant
-msgid "Quants"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_dbsource_sap_bone_mixin
-msgid "SAP HANA Business One Mixin"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "SAP SQL"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Sales"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_sale_order
-msgid "Sales Order"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_sale_order_line
-msgid "Sales Order Line"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Secondary UOM"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Select location for import inventory"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Select warehouse for import stocks features"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Split commercial partners"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Stocks"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model,name:base_external_dbsource_bone_sql.model_product_supplierinfo
-msgid "Supplier Pricelist"
-msgstr "Tarifa de proveedor"
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Unarchive Other Users"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Update In Date Quants"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Update in date quant"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Update partners payment mode and term from file"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Update partners payment mode/term from file"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
-#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
-msgid "Update payment mode/term"
-msgstr ""
-
-#. module: base_external_dbsource_bone_sql
 #: model:ir.model,name:base_external_dbsource_bone_sql.model_res_users
+msgid "User"
+msgstr ""
+
+#. module: base_external_dbsource_bone_sql
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_bone_sql.view_dbsource_form
 msgid "Users"
 msgstr "Usuarios"
-
-#. module: base_external_dbsource_bone_sql
-#: model:ir.model.fields,field_description:base_external_dbsource_bone_sql.field_base_external_dbsource__warehouse_id
-msgid "Warehouse"
-msgstr "Almacén"
