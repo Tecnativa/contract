@@ -65,6 +65,10 @@ project:
 reporting-engine:
   - report_xlsx
   - report_xlsx_helper
+server-backend:
+  - base_external_dbsource
+  - base_external_dbsource_mssql
+  - base_external_dbsource_sqlite
 server-brand:
   - disable_odoo_online
 server-ux:
