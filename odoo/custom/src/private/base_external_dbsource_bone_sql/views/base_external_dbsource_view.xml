@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_dbsource_form" model="ir.ui.view">
+        <field name="model">base.external.dbsource</field>
+        <field name="inherit_id" ref="base_external_dbsource.view_dbsource_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook name="mssql_bone" invisible="connector != 'mssql'">
+                    <page string="A3 SQL">
+                        <group>
+                            <group string="Users">
+                                <div>Import Users</div>
+                                <button
+                                    name="action_import_users_bone"
+                                    type="object"
+                                    string="Import Users"
+                                    class="btn btn-info"
+                                />
+                            </group>
+                            <group string="Partners">
+                                <div>Import payment term</div>
+                                <button
+                                    name="action_import_payment_term_bone"
+                                    type="object"
+                                    string="Import Payment term"
+                                    class="btn btn-info"
+                                />
+                                <div>Import customers</div>
+                                <button
+                                    name="action_import_customer_bone"
+                                    type="object"
+                                    string="Import Customers"
+                                    class="btn btn-info"
+                                />
+                                <div>Import delivery address</div>
+                                <button
+                                    name="action_import_delivery_bone"
+                                    type="object"
+                                    string="Import Delivery address"
+                                    class="btn btn-info"
+                                />
+                                <div>Import Partner Bank Account</div>
+                                <button
+                                    name="action_import_partner_bank_bone"
+                                    type="object"
+                                    string="Import Partner Bank Account"
+                                    class="btn btn-info"
+                                />
+                                <div>Import Partner Bank Mandate</div>
+                                <button
+                                    name="action_import_partner_bank_mandate_bone"
+                                    type="object"
+                                    string="Import Partner Bank Mandate"
+                                    class="btn btn-info"
+                                />
+                                <div>Import suppliers</div>
+                                <button
+                                    name="action_import_supplier_bone"
+                                    type="object"
+                                    string="Import Suppliers"
+                                    class="btn btn-info"
+                                />
+                            </group>
+                            <group string="Products">
+                                <div>Import Categories</div>
+                                <button
+                                    name="action_import_product_category_bone"
+                                    type="object"
+                                    string="Categories"
+                                    class="btn btn-info"
+                                />
+                                <div>Import products</div>
+                                <button
+                                    name="action_import_product_bone"
+                                    type="object"
+                                    string="Products"
+                                    class="btn btn-info"
+                                />
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

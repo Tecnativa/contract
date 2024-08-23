@@ -1,0 +1,641 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_external_dbsource_mssql_nexus
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_banking_mandate
+msgid "A generic banking mandate"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_account
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__account_id
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Account Asset Lines"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Account moves"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_analytic_account
+msgid "Analytic Account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_asset
+msgid "Asset"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_asset_group
+msgid "Asset Group"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Asset Lines"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_asset_line
+msgid "Asset depreciation table line"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_asset_profile
+msgid "Asset profile"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Assets"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_attribute_value
+msgid "Attribute Value"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Bank Journal"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Categories"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Chart Account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Choose a file to import..."
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__create_uid
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__create_date
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_analytic_line__date
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_move_line__date
+msgid "Date"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_base_external_dbsource__date_from
+msgid "Date From"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_base_external_dbsource__date_to
+msgid "Date To"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: code:addons/base_external_dbsource_mssql_nexus/models/base_external_dbsource.py:0
+#, python-format
+msgid "Debe seleccionar un archivo para importar"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__display_name
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_dbsource_nexus_mixin__display_name
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_base_external_dbsource
+msgid "External Database Sources"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_base_external_dbsource__account_map_file
+msgid "File account map"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_base_external_dbsource__filename
+msgid "Filename"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_fao_fishing_technique
+msgid "Fishing Technique"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__id
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_dbsource_nexus_mixin__id
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__id
+msgid "ID"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Assets"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Categories"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Chart Account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Customers"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Inventory"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Locations"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Lots"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Orderpoints"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Purchase Invoices"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Sale Invoices"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Sales"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Sales from invoices"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Supplier"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import Users"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import account asset lines"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import account moves"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import bank journals"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import customers"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import partner bank"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import payment mode"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import payment term"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import price lists"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import products"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Import records between dates if supported"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Inventory"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_stock_location
+msgid "Inventory Locations"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Invoices"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_move
+msgid "Journal Entries"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped____last_update
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_dbsource_nexus_mixin____last_update
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__write_uid
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__write_date
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Locations"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Lots"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Map Account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__mapped_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__mapped_key
+msgid "Mapped Key"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Mapper Account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_stock_warehouse_orderpoint
+msgid "Minimum Inventory Rule"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Moves"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "MsSql Nexus"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_move_line__nexus_cuenta
+msgid "Nexus Cuenta"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_account_mapped__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_analytic_account__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_asset__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_asset_group__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_asset_line__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_asset_profile__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_bank_statement_import_journal_creation__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_banking_mandate__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_journal__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_move__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_move_line__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_payment_mode__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_payment_term__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_setup_bank_manual_config__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_dbsource_nexus_mixin__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_partner_delivery_zone__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_attribute__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_attribute_value__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_category__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_customerinfo__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_fao_fishing_technique__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_pricelist__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_pricelist_item__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_product__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_public_category__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_product_supplierinfo__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_bank__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_category__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_users__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_sale_order__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_sale_order_line__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_sale_order_type__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_stock_location__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_stock_production_lot__nexus_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_stock_warehouse_orderpoint__nexus_key
+msgid "Nexus Key"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_move_line__nexus_reconcile_link
+msgid "Nexus Reconcile Link"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_account_move_line__nexus_reconcile_link2
+msgid "Nexus Reconcile Link2"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Orderpoints"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Orders"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_res_partner_mapped__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Partner Bank"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_res_partner_category
+msgid "Partner Tags"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_partner_delivery_zone
+msgid "Partner delivery zone"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Partners"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_payment_mode
+msgid "Payment Modes"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_payment_term
+msgid "Payment Terms"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Payment mode"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Payment term"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Price lists"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_attribute
+msgid "Product Attribute"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Products"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Purchase Invoices"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Reconcile account move lines"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Reconcile move lines"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Sale Invoices"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Sales"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Sales from invoices"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Select warehouse for import stocks features"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Stocks"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_sale_order_type
+msgid "Type of sale order"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Update partner on move lines"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_nexus.view_dbsource_form
+msgid "Update partner on move lines from account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_nexus.field_base_external_dbsource__warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_product_public_category
+msgid "Website Product Category"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_account_account_mapped
+msgid "account.account.mapped"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_dbsource_nexus_mixin
+msgid "dbsource.nexus.mixin"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_nexus
+#: model:ir.model,name:base_external_dbsource_mssql_nexus.model_res_partner_mapped
+msgid "res.partner.mapped"
+msgstr ""

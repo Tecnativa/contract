@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* blegal_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-23 09:44+0000\n"
+"PO-Revision-Date: 2024-08-23 09:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: blegal_custom
+#: model:ir.model.fields,field_description:blegal_custom.field_res_partner__cancellation_date
+#: model:ir.model.fields,field_description:blegal_custom.field_res_users__cancellation_date
+msgid "Cancellation Date"
+msgstr "Fecha de baja"
+
+#. module: blegal_custom
+#: model:ir.model.fields,field_description:blegal_custom.field_res_partner__cnae_code
+#: model:ir.model.fields,field_description:blegal_custom.field_res_users__cnae_code
+msgid "Cnae Code"
+msgstr "Código CNAE"
+
+#. module: blegal_custom
+#: model:ir.model,name:blegal_custom.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: blegal_custom
+#: model:ir.model.fields,field_description:blegal_custom.field_res_partner__registration_date
+#: model:ir.model.fields,field_description:blegal_custom.field_res_users__registration_date
+msgid "Registration Date"
+msgstr "Fecha de alta"
