@@ -6,14 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-23 09:42+0000\n"
-"PO-Revision-Date: 2024-08-23 09:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_30_60_90_120_150days
+msgid "6 Vencimientos"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_60days
+msgid "A 60 días"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_90days
+msgid "A 90 días"
+msgstr ""
 
 #. module: blegal_custom
 #: model:ir.model.fields,field_description:blegal_custom.field_res_partner__cancellation_date
@@ -30,6 +43,31 @@ msgstr ""
 #. module: blegal_custom
 #: model:ir.model,name:blegal_custom.model_res_partner
 msgid "Contact"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_end_quarter
+msgid "Fin trimestre"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30_60_90_120_150days
+msgid "Plazo de pago: 6 Vencimientos"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_60days
+msgid "Plazo de pago: 60 Días"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_90days
+msgid "Plazo de pago: 90 Días"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_end_quarter
+msgid "Plazo de pago: Fin trimestre"
 msgstr ""
 
 #. module: blegal_custom
