@@ -18,6 +18,7 @@ services:
     hostname: "intranet-test.blegal.cloud"
     depends_on:
       - db
+      - remote_blegal_mssql_proxy
       - smtp
     networks:
       default:
@@ -125,11 +126,26 @@ services:
     command:
       - test -r /etc/mailhog/auth && export MH_AUTH_FILE=/etc/mailhog/auth; exec MailHog
 
+  remote_blegal_mssql_proxy:
+    image: tecnativa/whitelist
+    restart: unless-stopped
+    networks:
+      default:
+        aliases:
+          - blegaldb.tecnativa.net
+      public:
+    environment:
+      TARGET: blegaldb.tecnativa.net
+      PORT: "1449 1449"
+      PRE_RESOLVE: 1
+
 networks:
   default:
     internal: ${DOODBA_NETWORK_INTERNAL-true}
     driver_opts:
       encrypted: 1
+
+  public:
 
   globalwhitelist_shared:
     external: true

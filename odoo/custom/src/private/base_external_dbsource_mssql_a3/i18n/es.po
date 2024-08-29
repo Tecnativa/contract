@@ -1,0 +1,240 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_external_dbsource_mssql_nexus
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_account_banking_mandate
+msgid "A generic banking mandate"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_banking_mandate__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_payment_term__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_setup_bank_manual_config__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_contract_contract__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_contract_line__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_dbsource_a3_mixin__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_product_category__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_product_product__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_product_template__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_bank__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_users__a3_key
+msgid "A3 Key"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_dbsource_a3_mixin
+msgid "A3 Mixin"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "A3 SQL"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Categories"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_contract_contract
+msgid "Contract"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_contract_line
+msgid "Contract Line"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Contract lines"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Contracts"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_base_external_dbsource
+msgid "External Database Sources"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__id
+msgid "ID"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Categories"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Contracts"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Contratcts lines"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Customers"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Delivery address"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Partner Bank Account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Partner Bank Mandate"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Suppliers"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Users"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import customers"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import delivery address"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import products"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import suppliers"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__mapped_key
+msgid "Mapped Key"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Partners"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_account_payment_term
+msgid "Payment Terms"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Products"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_res_users
+msgid "User"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Users"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_res_partner_mapped
+msgid "res.partner.mapped"
+msgstr ""
