@@ -16,3 +16,10 @@ class ProductProduct(models.Model):
 
     _inherit = ["product.product", "dbsource.a3.mixin"]
     _name = "product.product"
+
+
+class ProductTemplate(models.Model):
+    """It provides logic for connection to a MsSQL data source."""
+
+    _inherit = ["product.template", "dbsource.a3.mixin"]
+    _name = "product.template"

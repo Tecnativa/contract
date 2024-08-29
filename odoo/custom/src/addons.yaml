@@ -68,6 +68,7 @@ reporting-engine:
 server-backend:
   - base_external_dbsource
   - base_external_dbsource_mssql
+  - base_external_dbsource_importer
   - base_external_dbsource_sqlite
 server-brand:
   - disable_odoo_online

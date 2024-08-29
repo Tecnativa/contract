@@ -24,20 +24,6 @@ class ResPartnerBank(models.Model):
     _name = "res.partner.bank"
 
 
-# class AccountBankingMandate(models.Model):
-#     """ It provides logic for connection to a MsSQL data source. """
-
-#     _inherit = ["account.banking.mandate", "dbsource.a3.mixin"]
-#     _name = "account.banking.mandate"
-
-
-# class ResPartnerCategory(models.Model):
-#     """ It provides logic for connection to a MsSQL data source. """
-
-#     _inherit = ["res.partner.category", "dbsource.a3.mixin"]
-#     _name = "res.partner.category"
-
-
 class ResPartnerMapped(models.Model):
     """It provides logic for mapped data."""
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Payment terms -->
+    <record id="account_payment_term_60days" model="account.payment.term">
+        <field name="name">A 60 días</field>
+        <field name="note">Plazo de pago: 60 Días</field>
+        <field
+            name="line_ids"
+            eval="[(5, 0), (0, 0, {'value': 'percent', 'value_amount': 100.00, 'nb_days': 60, 'delay_type': 'days_after'})]"
+        />
+    </record>
+    <record id="account_payment_term_90days" model="account.payment.term">
+        <field name="name">A 90 días</field>
+        <field name="note">Plazo de pago: 90 Días</field>
+        <field
+            name="line_ids"
+            eval="[(5, 0), (0, 0, {'value': 'percent', 'value_amount': 100.0, 'nb_days': 90, 'delay_type': 'days_after'})]"
+        />
+    </record>
+    <record id="account_payment_term_30_60_90_120_150days" model="account.payment.term">
+        <field name="name">6 Vencimientos</field>
+        <field name="note">Plazo de pago: 6 Vencimientos</field>
+        <field
+            name="line_ids"
+            eval="[(5, 0),
+            (0, 0, {'nb_days': 30, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            (0, 0, {'nb_days': 60, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            (0, 0, {'nb_days': 90, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            (0, 0, {'nb_days': 120, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            (0, 0, {'nb_days': 150, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            ]"
+        />
+    </record>
+    <!-- TODO: Setting correctly -->
+    <record id="account_payment_term_end_quarter" model="account.payment.term">
+        <field name="name">Fin trimestre</field>
+        <field name="note">Plazo de pago: Fin trimestre</field>
+        <field
+            name="line_ids"
+            eval="[(5, 0), (0, 0, {'value': 'percent', 'value_amount': 100.00, 'nb_days': 0, 'delay_type': 'days_after'})]"
+        />
+    </record>
+
+</odoo>

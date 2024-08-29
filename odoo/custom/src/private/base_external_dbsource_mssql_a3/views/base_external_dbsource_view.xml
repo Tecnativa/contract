@@ -7,57 +7,50 @@
         <field name="inherit_id" ref="base_external_dbsource.view_dbsource_form" />
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
-                <notebook name="mssql_bone" invisible="connector != 'mssql'">
+                <notebook name="mssql_a3" invisible="connector != 'mssql'">
                     <page string="A3 SQL">
                         <group>
                             <group string="Users">
                                 <div>Import Users</div>
                                 <button
-                                    name="action_import_users_bone"
+                                    name="action_import_users_a3"
                                     type="object"
                                     string="Import Users"
                                     class="btn btn-info"
                                 />
                             </group>
                             <group string="Partners">
-                                <div>Import payment term</div>
-                                <button
-                                    name="action_import_payment_term_bone"
-                                    type="object"
-                                    string="Import Payment term"
-                                    class="btn btn-info"
-                                />
                                 <div>Import customers</div>
                                 <button
-                                    name="action_import_customer_bone"
+                                    name="action_import_customer_a3"
                                     type="object"
                                     string="Import Customers"
                                     class="btn btn-info"
                                 />
                                 <div>Import delivery address</div>
                                 <button
-                                    name="action_import_delivery_bone"
+                                    name="action_import_delivery_a3"
                                     type="object"
                                     string="Import Delivery address"
                                     class="btn btn-info"
                                 />
                                 <div>Import Partner Bank Account</div>
                                 <button
-                                    name="action_import_partner_bank_bone"
+                                    name="action_import_partner_bank_a3"
                                     type="object"
                                     string="Import Partner Bank Account"
                                     class="btn btn-info"
                                 />
                                 <div>Import Partner Bank Mandate</div>
                                 <button
-                                    name="action_import_partner_bank_mandate_bone"
+                                    name="action_import_partner_bank_mandate_a3"
                                     type="object"
                                     string="Import Partner Bank Mandate"
                                     class="btn btn-info"
                                 />
                                 <div>Import suppliers</div>
                                 <button
-                                    name="action_import_supplier_bone"
+                                    name="action_import_supplier_a3"
                                     type="object"
                                     string="Import Suppliers"
                                     class="btn btn-info"
@@ -66,16 +59,32 @@
                             <group string="Products">
                                 <div>Import Categories</div>
                                 <button
-                                    name="action_import_product_category_bone"
+                                    name="action_import_product_category_a3"
                                     type="object"
                                     string="Categories"
                                     class="btn btn-info"
                                 />
                                 <div>Import products</div>
                                 <button
-                                    name="action_import_product_bone"
+                                    name="action_import_product_a3"
                                     type="object"
                                     string="Products"
+                                    class="btn btn-info"
+                                />
+                            </group>
+                            <group string="Contracts">
+                                <div>Import Contracts</div>
+                                <button
+                                    name="action_import_contract_a3"
+                                    type="object"
+                                    string="Contracts"
+                                    class="btn btn-info"
+                                />
+                                <div>Import Contratcts lines</div>
+                                <button
+                                    name="action_import_contract_line_a3"
+                                    type="object"
+                                    string="Contract lines"
                                     class="btn btn-info"
                                 />
                             </group>

@@ -6,8 +6,9 @@
     "author": "Tecnativa",
     "category": "Accounting/Accounting",
     "website": "https://www.tecnativa.com",
-    "depends": ["base"],
+    "depends": ["account"],
     "data": [
+        "data/account_payment_data.xml",
         # "data/product_attribute_data.xml",
         # "report/report_deliveryslip.xml",
         # "report/report_purchaseorder.xml",

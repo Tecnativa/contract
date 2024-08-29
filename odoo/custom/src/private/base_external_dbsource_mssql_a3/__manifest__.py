@@ -24,9 +24,11 @@
         "base_external_dbsource_mssql",
         "blegal_custom",
         "contacts",
+        "contract",
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/res_users_view..xml",
+        "views/base_external_dbsource_view.xml",
+        "views/res_users_view.xml",
     ],
 }

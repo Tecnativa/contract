@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<odoo noupdate="1">
-    <record model="base.external.dbsource" id="mssql_bone">
-        <field name="name">MSSQL Bone</field>
-        <field name="conn_string">mssql+pymssql://usr:%s@DSN/DB</field>
-        <field name="password">1234</field>
-        <field name="connector">mssql</field>
-    </record>
-</odoo>

@@ -30,7 +30,9 @@ server-backend:
     depth: $DEPTH_MERGE
   remotes:
     origin: https://github.com/OCA/server-backend.git
+    Tecnativa: https://github.com/Tecnativa/server-backend.git
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
     - origin refs/pull/298/head # base_external_dbsource_mssql
+    - Tecnativa 17.0-mig-base_external_dbsource_importer

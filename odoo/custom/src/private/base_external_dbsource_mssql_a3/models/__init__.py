@@ -2,6 +2,8 @@
 from . import a3_mixin
 from . import account_banking_mandate
 from . import account_payment_term
+from . import base_external_dbsource
+from . import contract
 
 # from . import account_payment_mode
 from . import res_partner
