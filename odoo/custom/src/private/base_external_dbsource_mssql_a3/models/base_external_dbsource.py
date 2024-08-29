@@ -842,7 +842,7 @@ class BaseExternalDbsourceBOne(models.Model):
             "product.product", f"{row.COD_CONCEPTO_FACT.strip()}"
         )
         product = self.env["product.product"].with_company(company).browse(product_id)
-        contract_id = self.importer.get_m2_odoo_id(
+        contract_id = self.with_company(company).importer.get_m2_odoo_id(
             "contract.contract", f"{int(row.EXPEDIENTE)}"
         )
         contract = (
@@ -875,6 +875,11 @@ class BaseExternalDbsourceBOne(models.Model):
             "recurring_next_date": row.FECHA_PROX_GENERACION,
             # "company_id": company_id,
         }
+        if (
+            row.FECHA_PROX_GENERACION
+            and fields.Date.from_string(row.FECHA_PROX_GENERACION) < contract.date_start
+        ):
+            vals["recurring_next_date"] = contract.date_start
         if row.FECHA_FIN_GENERACION and contract.date_start > fields.Date.from_string(
             row.FECHA_FIN_GENERACION
         ):
