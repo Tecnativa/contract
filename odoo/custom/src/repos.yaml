@@ -15,15 +15,15 @@
     # Example of a merge of the PR with the number <PR>
     # - oca refs/pull/<PR>/head
 
-multi-company:
+contract:
   defaults:
     depth: $DEPTH_MERGE
   remotes:
-    origin: https://github.com/OCA/multi-company.git
+    origin: https://github.com/OCA/contract.git
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    - origin refs/pull/595/head # account_invoice_inter_company
+    - origin refs/pull/1120/head # product_contract - configurator + start date method
 
 server-backend:
   defaults:
