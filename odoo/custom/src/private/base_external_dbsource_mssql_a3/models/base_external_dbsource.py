@@ -773,7 +773,7 @@ class BaseExternalDbsourceBOne(models.Model):
             partner
         )
         vals = {
-            "a3_key": int(row.COD_EXPEDIENTE),
+            "a3_key": f"{int(row.COD_EXPEDIENTE)}",
             "company_id": company_id,
             "code": row.CLAVE_EXPEDIENTE.strip(),
             "name": row.TITULO.strip(),
@@ -783,7 +783,7 @@ class BaseExternalDbsourceBOne(models.Model):
             "pricelist_id": partner.property_product_pricelist.id,
             "fiscal_position_id": fiscal_position.id,
             "payment_term_id": partner.property_payment_term_id.id,
-            "invoice_partner_id": partner.property_payment_term_id.id,
+            "invoice_partner_id": partner_id,
             "line_recurrence": True,
         }
         return vals
@@ -800,8 +800,9 @@ class BaseExternalDbsourceBOne(models.Model):
             WHERE COD_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
                 --AND c.COD_EMPRESA = 'G01'
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
+                --AND c.COD_EXPEDIENTE = 33
         """
-        ext_records, records, records_dic = self.importer.load_data(
+        ext_records, records, records_dic = self.sudo().importer.load_data(
             "contract.contract", table, fields=fields_sql, where=where
         )
 
@@ -847,25 +848,37 @@ class BaseExternalDbsourceBOne(models.Model):
             "recurring_rule_type": recurring_rule_type,
             "date_start": contract.date_start,
             "date_end": row.FECHA_FIN_GENERACION,
-            "recurring_next_date": row.FECHA_PROX_GENERACION,
-            # "company_id": company_id,
         }
-        if (
-            row.FECHA_PROX_GENERACION
-            and fields.Date.from_string(row.FECHA_PROX_GENERACION) < contract.date_start
-        ):
-            vals["recurring_next_date"] = contract.date_start
+        # Obtener last_date_invoiced como post-paid aunque el contrato sea prepago para
+        # que se compute correctemente la siguiente fecha a facturar
+        vals["last_date_invoiced"] = self.env["contract.line"].get_next_invoice_date(
+            next_period_date_start=row.ULTIMA_FECHA_FACTURA,
+            recurring_invoicing_type="post-paid",
+            recurring_invoicing_offset=0,
+            recurring_rule_type=recurring_rule_type,
+            recurring_interval=1,
+            max_date_end=False,
+        )
         if row.FECHA_FIN_GENERACION and contract.date_start > fields.Date.from_string(
             row.FECHA_FIN_GENERACION
         ):
             vals["date_end"] = contract.date_start
+        if vals["date_end"]:
+            vals["last_date_invoiced"] = vals["date_end"]
         return vals
 
     def action_import_contract_line_a3(self):
         fields_sql = """
             EXPEDIENTE, COD_CONCEPTO_FACT, DESCRIPCION, CODIGO_CLIENTE, IMPORTE,
             PERIODO, FECHA_PROX_GENERACION, FECHA_FIN_GENERACION, UNIDADES,
-            COD_EMPRESA, NUMERO_ORDEN
+            COD_EMPRESA, NUMERO_ORDEN,
+            (SELECT TOP 1 con.FECHA_FACTURA
+            	FROM GES_CONCEPTOS con
+            	WHERE con.EXPEDIENTE = c.EXPEDIENTE
+            	    and con.CODIGO = c.COD_CONCEPTO_FACT
+            	    and ES_CUOTA = 'S'
+            	ORDER BY con.FECHA_FACTURA DESC
+            	) AS ULTIMA_FECHA_FACTURA
         """
         table = """
             dbo.GES_CUOTAS c
@@ -874,9 +887,11 @@ class BaseExternalDbsourceBOne(models.Model):
             WHERE c.CODIGO_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
                     --AND c.COD_EMPRESA = 'G01'
                     AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
+                    --AND c.EXPEDIENTE = 33
+                    --AND c.COD_CONCEPTO_FACT='CUOFIS'
             ORDER BY c.COD_EMPRESA, c.EXPEDIENTE, c.NUMERO_ORDEN
         """
-        ext_records, records, records_dic = self.importer.load_data(
+        ext_records, records, records_dic = self.sudo().importer.load_data(
             "contract.line", table, fields=fields_sql, where=where
         )
 
