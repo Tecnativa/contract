@@ -659,8 +659,8 @@ class BaseExternalDbsourceBOne(models.Model):
             dbo.GES_CLIENTES c
         """
         where = """
-            WHERE c.COD_BANCO_1 > 0 or c.COD_BANCO_2 > 0
-            --and CODIGO = 'G00025'
+            WHERE (c.COD_BANCO_1 > 0 or c.COD_BANCO_2 > 0)
+            --and CODIGO = 'G00032'
         """
         ext_records, records, records_dic = self.importer.load_data(
             "res.partner.bank", table, fields=fields_sql, where=where
@@ -713,35 +713,6 @@ class BaseExternalDbsourceBOne(models.Model):
                     )
                     bank2._onchange_acc_number_base_bank_from_iban()
 
-    def action_import_res_company_a3(self):
-        fields_sql = """
-            SELECT * FROM
-        """
-        table = """
-            dbo.GES_EMPRESAS ge
-        """
-        where = """
-            WHERE c.COD_MANDATO is not null and c.COD_BANCO_1 <> 0
-        """
-        ext_records, records, records_dic = self.importer.load_data(
-            "account.banking.mandate", table, fields=fields_sql, where=where
-        )
-
-        for ext_rec in ext_records:
-            partner_id = self.importer.get_m2_odoo_id(
-                "res.partner", f"{ext_rec.CODIGO}"
-            )
-            partner = self.env["res.partner"].browse(partner_id)
-            partner_bank_id = self.get_partner_bank_id(partner.id)
-            if partner_bank_id:
-                vals = self._prepare_partner_bank_mandate(
-                    ext_rec, partner, partner_bank_id
-                )
-                mandate = self.importer.upsert(
-                    vals["a3_key"], records, records_dic, vals
-                )
-                _logger.info(f"Importing account.banking.mandate values: {mandate}")
-
     def _prepare_partner_bank_mandate(self, row, bank_account):
         vals = {
             "unique_mandate_reference": row.COD_MANDATO.strip(),
@@ -750,12 +721,15 @@ class BaseExternalDbsourceBOne(models.Model):
             "partner_bank_id": self.importer.get_m2_odoo_id(
                 "res.partner.bank", f"{bank_account}"
             ),
-            "type": "recurrent" if row.SECUENCIA == "RCUR" else "oneoff",
             "signature_date": row.FECHA_MANDATO,
             "scheme": row.MOD_ADEUDO.strip(),
             "a3_key": row.COD_MANDATO.strip(),
             "state": "valid",
         }
+        if row.SECUENCIA in ["RCUR", "FRST"]:
+            vals["type"] = "recurrent"
+        else:
+            vals["type"] = "oneoff"
         return vals
 
     def action_import_partner_bank_mandate_a3(self):
@@ -769,6 +743,7 @@ class BaseExternalDbsourceBOne(models.Model):
         """
         where = """
             WHERE c.COD_MANDATO is not null and c.COD_BANCO_1 > 0
+            --and CODIGO = 'G00032'
         """
         ext_records, records, records_dic = self.importer.load_data(
             "account.banking.mandate", table, fields=fields_sql, where=where
@@ -783,11 +758,11 @@ class BaseExternalDbsourceBOne(models.Model):
             )
             bank = self.get_bank_id_by_code(format_bank)
             if bank:
-                vals = self._prepare_partner_bank_mandate(ext_rec, bank_account)
-                mandate = self.importer.upsert(
-                    vals["a3_key"], records, records_dic, vals
+                _logger.info(
+                    f"Importing account.banking.mandate values: {ext_rec.COD_MANDATO}"
                 )
-                _logger.info(f"Importing account.banking.mandate values: {mandate}")
+                vals = self._prepare_partner_bank_mandate(ext_rec, bank_account)
+                self.importer.upsert(vals["a3_key"], records, records_dic, vals)
 
     def _prepare_contract_a3(self, row):
         company_id = self.get_company_odoo_company_id(row.COD_EMPRESA)
