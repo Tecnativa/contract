@@ -23,7 +23,7 @@ contract:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    - origin refs/pull/1120/head # product_contract - configurator + start date method
+    - origin refs/pull/1123/head # 17.0-FIX-contract-post-message-link
 
 server-backend:
   defaults:
