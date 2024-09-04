@@ -614,6 +614,15 @@ class BaseExternalDbsourceBOne(models.Model):
             a3_companies_dic = self.get_a3_companies()
             tax_list = []
             for company in a3_companies_dic.values():
+                if company.id == 8:
+                    # INVERSIONES COSTA CARIBE
+                    # Todos los productos son exentos de IVA
+                    tax_list.append(
+                        self.env.ref(
+                            f"account.{company.id}_account_tax_template_s_iva_e"
+                        ).id
+                    )
+                    continue
                 if ext_rec.IVA == 1:
                     tax_list.append(
                         self.env.ref(
