@@ -33,6 +33,9 @@ services:
       traefik.forbiddenCrawlers-0.frontend.rule: Host:intranet-test.blegal.cloud;Path:/{anything:.*}
       traefik.longpolling-0.frontend.rule: Host:intranet-test.blegal.cloud;Path:/websocket,/websocket/{anything:.*}
       traefik.longpolling-0.port: 8072
+      traefik.alt-1.frontend.redirect.regex: ^(.*)://([^/]+)/(.*)$$
+      traefik.alt-1.frontend.redirect.replacement: $$1://intranet-test.blegal.cloud/$$3
+      traefik.alt-1.frontend.rule: Host:demo-blegal.tecnativa.net
       traefik.http.services.blegal-odoo-17-0-test-main.loadbalancer.server.port: 8069
       traefik.http.services.blegal-odoo-17-0-test-longpolling.loadbalancer.server.port: 8072
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-0.rule:
@@ -46,7 +49,7 @@ services:
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.middlewares:
         blegal-odoo-17-0-test-addSTS, blegal-odoo-17-0-test-forceSecure
       traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.tls: "true"
-      traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.tls.certResolver: letsencrytp
+      traefik.http.routers.blegal-odoo-17-0-test-longpolling-secure-0.tls.certResolver: letsencrypt
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-0.rule:
         Host(`intranet-test.blegal.cloud`) && (PathPrefix(`/`))
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-0.service: blegal-odoo-17-0-test-main
@@ -62,7 +65,13 @@ services:
         blegal-odoo-17-0-test-compress, blegal-odoo-17-0-test-forbid-crawlers,
         blegal-odoo-17-0-test-forceSecure
       traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-secure-0.tls: "true"
-      traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-secure-0.tls.certResolver: letsencrytp
+      traefik.http.routers.blegal-odoo-17-0-test-forbiddenCrawlers-secure-0.tls.certResolver: letsencrypt
+      traefik.http.middlewares.blegal-odoo-17-0-test-redirect-1.redirectRegex.regex: ^(.*)://([^/]+)/(.*)$$
+      traefik.http.middlewares.blegal-odoo-17-0-test-redirect-1.redirectRegex.replacement: $$1://intranet-test.blegal.cloud/$$3
+      traefik.http.routers.blegal-odoo-17-0-test-redirect-1.rule: Host(`demo-blegal.tecnativa.net`)
+      traefik.http.routers.blegal-odoo-17-0-test-redirect-1.service: blegal-odoo-17-0-test-main
+      traefik.http.routers.blegal-odoo-17-0-test-redirect-1.middlewares:
+        blegal-odoo-17-0-test-compress, blegal-odoo-17-0-test-redirect-1
     command:
       - odoo
       - --workers=2
@@ -119,7 +128,7 @@ services:
         blegal-odoo-17-0-test-compress, blegal-odoo-17-0-test-forbid-crawlers,
         blegal-odoo-17-0-test-forceSecure, blegal-odoo-17-0-test-mailhog-stripprefix
       traefik.http.routers.blegal-odoo-17-0-test-mailhog-secure-0.tls: "true"
-      traefik.http.routers.blegal-odoo-17-0-test-mailhog-secure-0.tls.certResolver: letsencrytp
+      traefik.http.routers.blegal-odoo-17-0-test-mailhog-secure-0.tls.certResolver: letsencrypt
     volumes:
       - "smtpconf:/etc/mailhog:ro,z"
     entrypoint: [sh, -c]

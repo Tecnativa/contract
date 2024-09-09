@@ -27,10 +27,13 @@ services:
       traefik.domain: "intranet.blegal.cloud"
       traefik.forbiddenCrawlers-0.frontend.headers.customResponseHeaders:
         "X-Robots-Tag:noindex, nofollow"
-      traefik.forbiddenCrawlers-0.frontend.rule: Host:intranet.blegal.cloud;Path:/web,/web/{anything:.*},/website/info,/website/info/{anything:.*}
-      traefik.main-0.frontend.rule: Host:intranet.blegal.cloud
-      traefik.longpolling-0.frontend.rule: Host:intranet.blegal.cloud;Path:/websocket,/websocket/{anything:.*}
+      traefik.forbiddenCrawlers-0.frontend.rule: Host(`intranet.blegal.cloud`);Path:/web,/web/{anything:.*},/website/info,/website/info/{anything:.*}
+      traefik.main-0.frontend.rule: Host(`intranet.blegal.cloud`)
+      traefik.longpolling-0.frontend.rule: Host(`intranet.blegal.cloud`);Path:/websocket,/websocket/{anything:.*}
       traefik.longpolling-0.port: 8072
+      traefik.alt-1.frontend.redirect.regex: ^(.*)://([^/]+)/(.*)$$
+      traefik.alt-1.frontend.redirect.replacement: $$1://intranet.blegal.cloud/$$3
+      traefik.alt-1.frontend.rule: Host(`blegal.tecnativa.net`)
       traefik.http.middlewares.blegal-odoo-17-0-prod-buffering.buffering.retryExpression:
         IsNetworkError() && Attempts() < 5
       traefik.http.middlewares.blegal-odoo-17-0-prod-compress.compress: "true"
@@ -83,6 +86,12 @@ services:
         blegal-odoo-17-0-prod-forceSecure
       traefik.http.routers.blegal-odoo-17-0-prod-forbiddenCrawlers-secure-0.tls: "true"
       traefik.http.routers.blegal-odoo-17-0-prod-forbiddenCrawlers-secure-0.tls.certResolver: letsencrypt
+      traefik.http.middlewares.blegal-odoo-17-0-prod-redirect-1.redirectRegex.regex: ^(.*)://([^/]+)/(.*)$$
+      traefik.http.middlewares.blegal-odoo-17-0-prod-redirect-1.redirectRegex.replacement: $$1://intranet.blegal.cloud/$$3
+      traefik.http.routers.blegal-odoo-17-0-prod-redirect-1.rule: Host(`blegal.tecnativa.net`)
+      traefik.http.routers.blegal-odoo-17-0-prod-redirect-1.service: blegal-odoo-17-0-prod-main
+      traefik.http.routers.blegal-odoo-17-0-prod-redirect-1.middlewares:
+        blegal-odoo-17-0-prod-compress, blegal-odoo-17-0-prod-redirect-1
 
   db:
     extends:
