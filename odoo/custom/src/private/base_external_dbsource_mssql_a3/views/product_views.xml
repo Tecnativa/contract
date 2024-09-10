@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- For research purpose only!!  -->
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="A3 Importer" name="a3_importer">
+                    <div class="alert alert-warning" role="alert">
+                      Important!! This page will disappear after import data finished
+                    </div>
+                    <group>
+                        <field name="a3_key" groups="base.group_no_one" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

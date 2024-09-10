@@ -635,6 +635,7 @@ class BaseExternalDbsourceBOne(models.Model):
                             f"account.{company.id}_account_tax_template_s_iva_ns"
                         ).id
                     )
+            # This customer does not use variants so we can update the created template
             product.product_tmpl_id.sudo().write(
                 {
                     "a3_key": vals["a3_key"],

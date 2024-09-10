@@ -1,7 +1,7 @@
 # Copyright 2020 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import fields, models
 
 
 class ProductCategory(models.Model):
@@ -23,3 +23,7 @@ class ProductTemplate(models.Model):
 
     _inherit = ["product.template", "dbsource.a3.mixin"]
     _name = "product.template"
+
+    # User can update the key directly from template because he does not use variants
+    # TT50002
+    a3_key = fields.Char(related="product_variant_ids.a3_key", readonly=False)
