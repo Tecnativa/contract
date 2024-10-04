@@ -6,3 +6,4 @@ schwifty==2024.4.0
 sqlalchemy
 pyodbc
 pymssql<=2.2.5
+pypdf

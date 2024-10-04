@@ -19,6 +19,11 @@ msgid "A generic banking mandate"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.product_template_form_view
+msgid "A3 Importer"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_banking_mandate__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_payment_term__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_setup_bank_manual_config__a3_key
@@ -168,6 +173,11 @@ msgstr ""
 #. module: base_external_dbsource_mssql_a3
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
 msgid "Import suppliers"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.product_template_form_view
+msgid "Important!! This page will disappear after import data finished"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3

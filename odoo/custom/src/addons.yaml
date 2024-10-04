@@ -38,6 +38,8 @@ crm:
   - crm_phonecall
 currency:
   - currency_rate_update
+edi:
+  - base_import_pdf_by_template
 l10n-spain:
   - l10n_es_account_asset
   - l10n_es_account_statement_import_n43
