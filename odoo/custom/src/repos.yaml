@@ -15,6 +15,16 @@
     # Example of a merge of the PR with the number <PR>
     # - oca refs/pull/<PR>/head
 
+edi:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/edi.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/1051/head # base_import_pdf_by_template
+
 contract:
   defaults:
     depth: $DEPTH_MERGE
