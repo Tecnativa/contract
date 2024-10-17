@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 
+from dateutil.relativedelta import relativedelta
+
 from odoo import api, fields, models
 from odoo.tools import ormcache
 from odoo.tools.mail import plaintext2html
@@ -810,7 +812,8 @@ class BaseExternalDbsourceBOne(models.Model):
             WHERE COD_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
                 --AND c.COD_EMPRESA = 'G01'
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
-                --AND c.COD_EXPEDIENTE = 33
+                --AND c.COD_EXPEDIENTE = 3928
+                --AND c.COD_EXPEDIENTE = 3911
         """
         ext_records, records, records_dic = self.sudo().importer.load_data(
             "contract.contract", table, fields=fields_sql, where=where
@@ -836,16 +839,23 @@ class BaseExternalDbsourceBOne(models.Model):
         )
         if row.PERIODO == "S":
             recurring_rule_type = "weekly"
+            line_date_start = row.FECHA_PROX_GENERACION - relativedelta(weeks=1)
         elif row.PERIODO == "M":
             recurring_rule_type = "monthly"
+            line_date_start = row.FECHA_PROX_GENERACION - relativedelta(months=1)
         elif row.PERIODO == "T":
             recurring_rule_type = "quarterly"
+            line_date_start = row.FECHA_PROX_GENERACION - relativedelta(months=3)
         elif row.PERIODO == "C":
             recurring_rule_type = "semesterly"
+            line_date_start = row.FECHA_PROX_GENERACION - relativedelta(months=6)
         elif row.PERIODO == "A":
             recurring_rule_type = "yearly"
+            line_date_start = row.FECHA_PROX_GENERACION - relativedelta(years=1)
         else:
             recurring_rule_type = "monthly"
+            line_date_start = row.FECHA_PROX_GENERACION - relativedelta(months=1)
+        line_date_start = fields.Date.from_string(line_date_start)
         vals = {
             "a3_key": f"{int(row.EXPEDIENTE)}-{int(row.NUMERO_ORDEN)}",
             "contract_id": contract_id,
@@ -856,25 +866,26 @@ class BaseExternalDbsourceBOne(models.Model):
             "sequence": row.NUMERO_ORDEN,
             "recurring_interval": 1,
             "recurring_rule_type": recurring_rule_type,
-            "date_start": contract.date_start,
-            "date_end": row.FECHA_FIN_GENERACION,
+            "date_start": line_date_start,
+            "date_end": fields.Date.from_string(row.FECHA_FIN_GENERACION),
         }
-        # Obtener last_date_invoiced como post-paid aunque el contrato sea prepago para
-        # que se compute correctemente la siguiente fecha a facturar
-        vals["last_date_invoiced"] = self.env["contract.line"].get_next_invoice_date(
-            next_period_date_start=row.ULTIMA_FECHA_FACTURA,
-            recurring_invoicing_type="post-paid",
-            recurring_invoicing_offset=0,
-            recurring_rule_type=recurring_rule_type,
-            recurring_interval=1,
-            max_date_end=False,
-        )
+        vals["last_date_invoiced"] = fields.Date.from_string(
+            row.FECHA_PROX_GENERACION
+        ) - relativedelta(days=1)
         if row.FECHA_FIN_GENERACION and contract.date_start > fields.Date.from_string(
             row.FECHA_FIN_GENERACION
         ):
             vals["date_end"] = contract.date_start
-        if vals["date_end"]:
-            vals["last_date_invoiced"] = vals["date_end"]
+            vals["last_date_invoiced"] = fields.Date.from_string(
+                row.FECHA_FIN_GENERACION
+            )
+        if vals["date_end"] and vals["date_start"] > vals["date_end"]:
+            vals["date_end"] = vals["date_start"]
+        if (
+            vals["last_date_invoiced"]
+            and vals["last_date_invoiced"] < vals["date_start"]
+        ):
+            vals["last_date_invoiced"] = vals["date_start"]
         return vals
 
     def action_import_contract_line_a3(self):
@@ -899,6 +910,8 @@ class BaseExternalDbsourceBOne(models.Model):
                     AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
                     --AND c.EXPEDIENTE = 33
                     --AND c.COD_CONCEPTO_FACT='CUOFIS'
+                    --AND c.CODIGO_CLIENTE = 'G00810'
+                    --AND c.CODIGO_CLIENTE = 'G00818'
             ORDER BY c.COD_EMPRESA, c.EXPEDIENTE, c.NUMERO_ORDEN
         """
         ext_records, records, records_dic = self.sudo().importer.load_data(
