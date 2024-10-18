@@ -814,6 +814,7 @@ class BaseExternalDbsourceBOne(models.Model):
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
                 --AND c.COD_EXPEDIENTE = 3928
                 --AND c.COD_EXPEDIENTE = 3911
+                --AND c.COD_EXPEDIENTE = 32
         """
         ext_records, records, records_dic = self.sudo().importer.load_data(
             "contract.contract", table, fields=fields_sql, where=where
@@ -886,6 +887,12 @@ class BaseExternalDbsourceBOne(models.Model):
             and vals["last_date_invoiced"] < vals["date_start"]
         ):
             vals["last_date_invoiced"] = vals["date_start"]
+        if (
+            vals["last_date_invoiced"]
+            and vals["date_end"]
+            and vals["last_date_invoiced"] > vals["date_end"]
+        ):
+            vals["date_end"] = vals["last_date_invoiced"]
         return vals
 
     def action_import_contract_line_a3(self):
@@ -908,7 +915,7 @@ class BaseExternalDbsourceBOne(models.Model):
             WHERE c.CODIGO_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
                     --AND c.COD_EMPRESA = 'G01'
                     AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
-                    --AND c.EXPEDIENTE = 33
+                    --AND c.EXPEDIENTE = 32
                     --AND c.COD_CONCEPTO_FACT='CUOFIS'
                     --AND c.CODIGO_CLIENTE = 'G00810'
                     --AND c.CODIGO_CLIENTE = 'G00818'
