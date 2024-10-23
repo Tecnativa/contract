@@ -810,8 +810,10 @@ class BaseExternalDbsourceBOne(models.Model):
         """
         where = """
             WHERE COD_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
-                --AND c.COD_EMPRESA = 'G01'
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
+                AND COD_EXPEDIENTE IN (SELECT EXPEDIENTE from GES_CUOTAS)
+                --AND CLAVE_EXPEDIENTE = 'C/001359'
+                --AND c.COD_EMPRESA = 'G01'
                 --AND c.COD_EXPEDIENTE = 3928
                 --AND c.COD_EXPEDIENTE = 3911
                 --AND c.COD_EXPEDIENTE = 32
@@ -915,6 +917,7 @@ class BaseExternalDbsourceBOne(models.Model):
             WHERE c.CODIGO_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
                     --AND c.COD_EMPRESA = 'G01'
                     AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
+                    --AND c.EXPEDIENTE = 1359
                     --AND c.EXPEDIENTE = 32
                     --AND c.COD_CONCEPTO_FACT='CUOFIS'
                     --AND c.CODIGO_CLIENTE = 'G00810'
@@ -931,7 +934,12 @@ class BaseExternalDbsourceBOne(models.Model):
                 f"Linea: {int(ext_rec.NUMERO_ORDEN)}"
             )
             vals = self._prepare_contract_line_a3(ext_rec)
-            self.sudo().importer.upsert(vals["a3_key"], records, records_dic, vals)
+            contract_line = self.sudo().importer.upsert(
+                vals["a3_key"], records, records_dic, vals
+            )
+            if contract_line.date_end:
+                contract_line.stop(date_end=contract_line.date_end)
+                contract_line.is_canceled = True
 
     @api.model
     @ormcache("pay_term")
