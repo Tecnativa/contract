@@ -5,7 +5,7 @@ from . import account_payment_term
 from . import base_external_dbsource
 from . import contract
 
-# from . import account_payment_mode
+from . import account_payment_mode
 from . import res_partner
 from . import res_users
 from . import product

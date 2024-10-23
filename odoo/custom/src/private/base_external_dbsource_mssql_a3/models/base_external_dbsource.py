@@ -185,7 +185,9 @@ class BaseExternalDbsourceBOne(models.Model):
         gc.OBSERVACIONES,gc.FORMA_PAGO, gc.CODIGO_POSTAL_FIS,gc.VIA_PUBLICA_FIS,
         gc.NUMERO_FIS,gc.ESCALERA_FIS,gc.PISO_FIS,gc.PUERTA_FIS,
         gc.MUNICIPIO_FIS,gc.PROVINCIA_FIS,gc.TELEFONO_FIS,
-        gc.FECHA_ALTA,gc.FECHA_BAJA,gc.CODIGO_CNAE,gc.COD_RESPONSABLE, gc.SIGLAS_FIS"""
+        gc.FECHA_ALTA,gc.FECHA_BAJA,gc.CODIGO_CNAE,gc.COD_RESPONSABLE, gc.SIGLAS_FIS,
+        gc.REMESAS
+        """
         table = "dbo.GES_CLIENTES gc"
         where = """
             --WHERE CODIGO = 'G00026'
@@ -246,6 +248,16 @@ class BaseExternalDbsourceBOne(models.Model):
                 partner.sudo().with_company(
                     company
                 ).property_payment_term_id = self._get_payment_term(ext_rec.FORMA_PAGO)
+            odoo_companies = self.env["res.company"].sudo().search([])
+            for company in odoo_companies:
+                payment_mode = "Transfer"
+                if ext_rec.REMESAS == 1 and ext_rec.COD_BANCO_1 > 0:
+                    payment_mode = "SEPA"
+                partner.sudo().with_company(
+                    company
+                ).customer_payment_mode_id = self.sudo().importer.get_m2_odoo_id(
+                    "account.payment.mode", f"{company.id}-{payment_mode}"
+                )
 
     def _prepare_customer_delivery_address(self, row):
         partner_id = self.importer.get_m2_odoo_id("res.partner", f"{row.CODIGO}")

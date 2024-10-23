@@ -29,6 +29,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/base_external_dbsource_view.xml",
+        "views/account_payment_mode_views.xml",
         "views/product_views.xml",
         "views/res_users_view.xml",
     ],
