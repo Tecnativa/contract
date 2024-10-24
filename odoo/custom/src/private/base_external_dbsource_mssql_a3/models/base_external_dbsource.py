@@ -186,7 +186,7 @@ class BaseExternalDbsourceBOne(models.Model):
         gc.NUMERO_FIS,gc.ESCALERA_FIS,gc.PISO_FIS,gc.PUERTA_FIS,
         gc.MUNICIPIO_FIS,gc.PROVINCIA_FIS,gc.TELEFONO_FIS,
         gc.FECHA_ALTA,gc.FECHA_BAJA,gc.CODIGO_CNAE,gc.COD_RESPONSABLE, gc.SIGLAS_FIS,
-        gc.REMESAS
+        gc.REMESAS, gc.MOD_ADEUDO, gc.SECUENCIA
         """
         table = "dbo.GES_CLIENTES gc"
         where = """
@@ -252,7 +252,10 @@ class BaseExternalDbsourceBOne(models.Model):
             for company in odoo_companies:
                 payment_mode = "Transfer"
                 if ext_rec.REMESAS == 1 and ext_rec.COD_BANCO_1 > 0:
-                    payment_mode = "SEPA"
+                    if ext_rec.MOD_ADEUDO == "CORE":
+                        payment_mode = "SEPA"
+                    else:
+                        payment_mode = "SEPA-B2B"
                 partner.sudo().with_company(
                     company
                 ).customer_payment_mode_id = self.sudo().importer.get_m2_odoo_id(
