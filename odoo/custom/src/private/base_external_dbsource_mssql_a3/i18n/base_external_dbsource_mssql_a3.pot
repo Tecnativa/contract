@@ -25,6 +25,7 @@ msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_banking_mandate__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_payment_mode__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_payment_term__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_setup_bank_manual_config__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_contract_contract__a3_key
@@ -203,6 +204,11 @@ msgstr ""
 #. module: base_external_dbsource_mssql_a3
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
 msgid "Partners"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_account_payment_mode
+msgid "Payment Modes"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
