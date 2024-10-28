@@ -75,3 +75,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:blegal_custom.field_res_users__registration_date
 msgid "Registration Date"
 msgstr ""
+
+#. module: blegal_custom
+#: model:product.template,name:blegal_custom.product_product_aws_product_template
+msgid "Test AWS Product"
+msgstr ""
+
+#. module: blegal_custom
+#: model:product.template,name:blegal_custom.product_product_creinsa_product_template
+msgid "Test Creinsa Product"
+msgstr ""
+
+#. module: blegal_custom
+#: model:product.template,name:blegal_custom.product_product_google_product_template
+msgid "Test Google Product"
+msgstr ""
+
+#. module: blegal_custom
+#: model:product.template,name:blegal_custom.product_product_ionos_product_template
+msgid "Test Ionos Product"
+msgstr ""
+
+#. module: blegal_custom
+#: model:product.template,name:blegal_custom.product_product_ovh_product_template
+msgid "Test OVH Product"
+msgstr ""
