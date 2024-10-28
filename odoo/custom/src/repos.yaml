@@ -23,7 +23,7 @@ edi:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    - origin refs/pull/1051/head # base_import_pdf_by_template
+    - origin refs/pull/1056/head # base_import_pdf_by_template_account
 
 contract:
   defaults:
