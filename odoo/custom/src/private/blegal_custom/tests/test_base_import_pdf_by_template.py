@@ -143,19 +143,29 @@ class TestBaseImportPdfByTemplate(BaseCommon):
         self.assertIn(self.attachment_creinsa, invoice.attachment_ids)
         self._test_account_invoice_creinsa_data(invoice)
 
-    # def test_account_invoice_google(self):
-    #     wizard = self._create_wizard_base_import_pdf_upload(self.attachment_google)
-    #     res = wizard.action_process()
-    #     self.assertEqual(res["res_model"], "account.move")
-    #     record = self.env[res["res_model"]].browse(res["res_id"])
-    #     self.assertIn(self.attachment_google, record.attachment_ids)
-    #     self.assertEqual(record.move_type, "in_invoice")
-    #     self.assertEqual(record.ref, "5050834184")
-    #     self.assertEqual(record.partner_id, self.partner_google)
-    #     self.assertEqual(len(record.invoice_line_ids), 1)
-    #     self.assertEqual(record.invoice_line_ids.product_id, self.product_google)
-    #     self.assertEqual(record.invoice_line_ids.quantity, 1)
-    #     self.assertEqual(record.invoice_line_ids.price_unit, 19.2)
+    def _test_account_invoice_google_data(self, record):
+        self.assertEqual(record.move_type, "in_invoice")
+        self.assertEqual(record.ref, "5050834184")
+        self.assertEqual(record.partner_id, self.partner_google)
+        self.assertEqual(len(record.invoice_line_ids), 1)
+        self.assertEqual(record.invoice_line_ids.product_id, self.product_google)
+        self.assertEqual(record.invoice_line_ids.quantity, 1)
+        self.assertEqual(record.invoice_line_ids.price_unit, 19.2)
+
+    def test_account_invoice_google_01(self):
+        wizard = self._create_wizard_base_import_pdf_upload(self.attachment_google)
+        res = wizard.action_process()
+        self.assertEqual(res["res_model"], "account.move")
+        record = self.env[res["res_model"]].browse(res["res_id"])
+        self.assertIn(self.attachment_google, record.attachment_ids)
+        self._test_account_invoice_google_data(record)
+
+    def test_account_invoice_google_02(self):
+        invoice = self.journal.with_context(
+            default_journal_id=self.journal.id
+        )._create_document_from_attachment(self.attachment_google.id)
+        self.assertIn(self.attachment_google, invoice.attachment_ids)
+        self._test_account_invoice_google_data(invoice)
 
     def _test_account_invoice_ionos_data(self, record):
         self.assertEqual(record.move_type, "in_invoice")
