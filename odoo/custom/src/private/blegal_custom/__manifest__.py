@@ -13,6 +13,7 @@
         # "report/report_deliveryslip.xml",
         # "report/report_purchaseorder.xml",
         # "report/report_sale_order.xml",
+        "views/account_move_views.xml",
         "views/res_partner_views.xml",
     ],
     "demo": [
