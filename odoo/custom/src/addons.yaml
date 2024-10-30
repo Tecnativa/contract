@@ -6,6 +6,7 @@ account-financial-reporting:
   - account_tax_balance
 account-financial-tools:
   - account_asset_management
+  - account_loan
   - account_lock_date_update
   - account_move_line_tax_editable
 account-invoicing:
