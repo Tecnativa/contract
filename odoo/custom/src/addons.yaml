@@ -30,6 +30,7 @@ bank-statement-import:
   - account_statement_import_base
   - account_statement_import_file
   - account_statement_import_online
+  - account_statement_import_sheet_file
 community-data-files:
   - base_bank_from_iban
 contract:
