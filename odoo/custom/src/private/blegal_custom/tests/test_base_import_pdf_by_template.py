@@ -143,6 +143,25 @@ class TestBaseImportPdfByTemplate(BaseCommon):
         self.assertIn(self.attachment_creinsa, invoice.attachment_ids)
         self._test_account_invoice_creinsa_data(invoice)
 
+    def test_action_base_import_pdf_by_template_reprocess(self):
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "in_invoice",
+                "journal_id": self.journal.id,
+            }
+        )
+        self.attachment_creinsa.write(
+            {"res_model": invoice._name, "res_id": invoice.id}
+        )
+        invoice.with_context(
+            active_ids=invoice.ids
+        ).action_base_import_pdf_by_template_reprocess()
+        self._test_account_invoice_creinsa_data(invoice)
+        self.assertEqual(len(invoice.attachment_ids), 1)
+        # Process again
+        self._test_account_invoice_creinsa_data(invoice)
+        self.assertEqual(len(invoice.attachment_ids), 1)
+
     def _test_account_invoice_google_data(self, record):
         self.assertEqual(record.move_type, "in_invoice")
         self.assertEqual(record.ref, "5050834184")
