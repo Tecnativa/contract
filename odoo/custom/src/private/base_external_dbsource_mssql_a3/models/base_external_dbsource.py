@@ -813,6 +813,9 @@ class BaseExternalDbsourceBOne(models.Model):
             "payment_term_id": partner.property_payment_term_id.id,
             "invoice_partner_id": partner_id,
             "line_recurrence": True,
+            "user_id": self.importer.get_m2_odoo_id(
+                "res.users", f"RES-{row.COD_RESPONSABLE}"
+            ),
         }
         return vals
 
