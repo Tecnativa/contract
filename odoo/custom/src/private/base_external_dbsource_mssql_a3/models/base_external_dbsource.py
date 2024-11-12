@@ -596,7 +596,7 @@ class BaseExternalDbsourceBOne(models.Model):
     def _prepare_product_data_a3(self, row):
         vals = {
             "a3_key": row.CODIGO,
-            "name": row.DESCRIPCION,
+            "name": row.DESCRIPCION.strip(),
             "detailed_type": "service",
             "default_code": row.CODIGO,
             "list_price": row.IMPORTE,
@@ -616,6 +616,7 @@ class BaseExternalDbsourceBOne(models.Model):
         """
         where = """
             WHERE c.CODIGO = gt.CODIGO_CONCEPTO
+                AND c.CODIGO NOT IN ('CTABL', 'CTABGL', 'CTASUP', 'CTAACM')
                 --and c.CODIGO = 'CTABL'
         """
         ext_records, records, records_dic = importer.load_data(
@@ -934,13 +935,14 @@ class BaseExternalDbsourceBOne(models.Model):
         """
         where = """
             WHERE c.CODIGO_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
-                    --AND c.COD_EMPRESA = 'G01'
-                    AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
-                    --AND c.EXPEDIENTE = 1359
-                    --AND c.EXPEDIENTE = 32
-                    --AND c.COD_CONCEPTO_FACT='CUOFIS'
-                    --AND c.CODIGO_CLIENTE = 'G00810'
-                    --AND c.CODIGO_CLIENTE = 'G00818'
+                --AND c.COD_EMPRESA = 'G01'
+                AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
+                AND c.COD_CONCEPTO_FACT NOT IN ('CTABL', 'CTABGL', 'CTASUP', 'CTAACM')
+                --AND c.EXPEDIENTE = 1359
+                --AND c.EXPEDIENTE = 32
+                --AND c.COD_CONCEPTO_FACT='CUOFIS'
+                --AND c.CODIGO_CLIENTE = 'G00810'
+                --AND c.CODIGO_CLIENTE = 'G00818'
             ORDER BY c.COD_EMPRESA, c.EXPEDIENTE, c.NUMERO_ORDEN
         """
         ext_records, records, records_dic = self.sudo().importer.load_data(
