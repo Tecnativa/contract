@@ -43,6 +43,8 @@ currency:
 edi:
   - base_import_pdf_by_template
   - base_import_pdf_by_template_account
+hr-holidays:
+  - hr_holidays_public
 l10n-spain:
   - l10n_es_account_asset
   - l10n_es_account_statement_import_n43
