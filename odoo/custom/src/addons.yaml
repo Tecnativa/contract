@@ -70,6 +70,7 @@ partner-contact:
   - base_location_geonames_import
 project:
   - project_task_default_stage
+  - sale_project_task_recurrency
 reporting-engine:
   - report_xlsx
   - report_xlsx_helper
