@@ -16,7 +16,7 @@
                                     name="action_import_users_a3"
                                     type="object"
                                     string="Import Users"
-                                    class="btn btn-info"
+                                    class="btn"
                                 />
                             </group>
                             <group string="Partners">
