@@ -755,6 +755,7 @@ class BaseExternalDbsourceBOne(models.Model):
             "a3_key": row.COD_MANDATO.strip(),
             "state": "valid",
             "type": "recurrent",
+            "last_debit_date": fields.Date.today(),
         }
         if row.SECUENCIA == "RCUR":
             vals["recurrent_sequence_type"] = "recurring"
