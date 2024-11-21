@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: v7.0.3
+_commit: v8.1.0
 _src_path: git@github.com:Tecnativa/doodba-copier-template.git
 backup_deletion: false
 backup_dst: boto3+s3://tecnativa-blegal-bkp
@@ -48,4 +48,4 @@ smtp_relay_host: mx.blegal.cloud
 smtp_relay_port: 587
 smtp_relay_user: intranet@blegal.cloud
 smtp_relay_version: "13"
-traefik_version: 2
+traefik_version: 3

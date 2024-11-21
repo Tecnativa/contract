@@ -27,9 +27,13 @@ services:
       traefik.domain: "intranet.blegal.cloud"
       traefik.forbiddenCrawlers-0.frontend.headers.customResponseHeaders:
         "X-Robots-Tag:noindex, nofollow"
-      traefik.forbiddenCrawlers-0.frontend.rule: Host(`intranet.blegal.cloud`);Path:/web,/web/{anything:.*},/website/info,/website/info/{anything:.*}
+      traefik.forbiddenCrawlers-0.frontend.rule:
+        Host(`intranet.blegal.cloud`) && (PathPrefix(`/web`) || Path(`/web`) ||
+        PathPrefix(`/website/info`) || Path(`/website/info`))
       traefik.main-0.frontend.rule: Host(`intranet.blegal.cloud`)
-      traefik.longpolling-0.frontend.rule: Host(`intranet.blegal.cloud`);Path:/websocket,/websocket/{anything:.*}
+      traefik.longpolling-0.frontend.rule:
+        Host(`intranet.blegal.cloud`) && (PathPrefix(`/websocket`) ||
+        Path(`/websocket`))
       traefik.longpolling-0.port: 8072
       traefik.alt-1.frontend.redirect.regex: ^(.*)://([^/]+)/(.*)$$
       traefik.alt-1.frontend.redirect.replacement: $$1://intranet.blegal.cloud/$$3
@@ -69,16 +73,16 @@ services:
       traefik.http.routers.blegal-odoo-17-0-prod-longpolling-secure-0.tls: "true"
       traefik.http.routers.blegal-odoo-17-0-prod-longpolling-secure-0.tls.certResolver: letsencrypt
       traefik.http.routers.blegal-odoo-17-0-prod-forbiddenCrawlers-0.rule:
-        Host(`intranet.blegal.cloud`) && (PathPrefix(`/web/`, `/website/info/`) ||
-        Path(`/web`, `/website/info`))
+        Host(`intranet.blegal.cloud`) && (PathPrefix(`/web/`) ||
+        PathPrefix(`/website/info/`) || Path(`/web`) || Path(`/website/info`))
       traefik.http.routers.blegal-odoo-17-0-prod-forbiddenCrawlers-0.service: blegal-odoo-17-0-prod-main
       traefik.http.routers.blegal-odoo-17-0-prod-forbiddenCrawlers-0.middlewares:
         blegal-odoo-17-0-prod-addSTS, blegal-odoo-17-0-prod-buffering,
         blegal-odoo-17-0-prod-compress, blegal-odoo-17-0-prod-forbid-crawlers,
         blegal-odoo-17-0-prod-forceSecure
       traefik.http.routers.blegal-odoo-17-0-prod-forbiddenCrawlers-secure-0.rule:
-        Host(`intranet.blegal.cloud`) && (PathPrefix(`/web/`, `/website/info/`) ||
-        Path(`/web`, `/website/info`))
+        Host(`intranet.blegal.cloud`) && (PathPrefix(`/web/`) ||
+        PathPrefix(`/website/info/`) || Path(`/web`) || Path(`/website/info`))
       traefik.http.routers.blegal-odoo-17-0-prod-forbiddenCrawlers-secure-0.service: blegal-odoo-17-0-prod-main
       traefik.http.routers.blegal-odoo-17-0-prod-forbiddenCrawlers-secure-0.middlewares:
         blegal-odoo-17-0-prod-addSTS, blegal-odoo-17-0-prod-buffering,
