@@ -25,6 +25,7 @@
         "blegal_custom",
         "contacts",
         "contract",
+        "account_banking_sepa_direct_debit",
     ],
     "data": [
         "security/ir.model.access.csv",

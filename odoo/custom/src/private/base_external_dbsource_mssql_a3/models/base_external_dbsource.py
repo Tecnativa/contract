@@ -754,11 +754,12 @@ class BaseExternalDbsourceBOne(models.Model):
             "scheme": row.MOD_ADEUDO.strip(),
             "a3_key": row.COD_MANDATO.strip(),
             "state": "valid",
+            "type": "recurrent",
         }
-        if row.SECUENCIA in ["RCUR", "FRST"]:
-            vals["type"] = "recurrent"
+        if row.SECUENCIA == "RCUR":
+            vals["recurrent_sequence_type"] = "recurring"
         else:
-            vals["type"] = "oneoff"
+            vals["recurrent_sequence_type"] = "first"
         return vals
 
     def action_import_partner_bank_mandate_a3(self):
