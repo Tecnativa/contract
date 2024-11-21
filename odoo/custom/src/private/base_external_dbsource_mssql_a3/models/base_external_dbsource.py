@@ -814,9 +814,6 @@ class BaseExternalDbsourceBOne(models.Model):
             "payment_term_id": partner.property_payment_term_id.id,
             "invoice_partner_id": partner_id,
             "line_recurrence": True,
-            "user_id": self.importer.get_m2_odoo_id(
-                "res.users", f"RES-{row.COD_RESPONSABLE}"
-            ),
         }
         return vals
 
@@ -961,6 +958,24 @@ class BaseExternalDbsourceBOne(models.Model):
             if contract_line.date_end:
                 contract_line.stop(date_end=contract_line.date_end)
                 contract_line.is_canceled = True
+
+    def action_update_mandate_company_from_contract(self):
+        mandates = self.env["account.banking.mandate"].sudo().search([])
+        contracts = (
+            self.env["contract.contract"]
+            .sudo()
+            .search([("partner_id", "in", mandates.partner_id.ids)])
+        )
+        for mandate in mandates:
+            contract = contracts.filtered(
+                lambda ct, m=mandate: ct.partner_id == m.partner_id
+            )
+            if contract:
+                _logger.info(
+                    f"Mandate {mandate.unique_mandate_reference} company updated "
+                    f"to: {contract[:1].company_id.name}"
+                )
+                mandate.sudo().company_id = contract[:1].company_id
 
     @api.model
     @ormcache("pay_term")

@@ -87,6 +87,13 @@
                                     string="Contract lines"
                                     class="btn btn-info"
                                 />
+                                <div>Update mandates company from contracts</div>
+                                <button
+                                    name="action_update_mandate_company_from_contract"
+                                    type="object"
+                                    string="Update mandate company"
+                                    class="btn btn-info"
+                                />
                             </group>
                         </group>
                     </page>
