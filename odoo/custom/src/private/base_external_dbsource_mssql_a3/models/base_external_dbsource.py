@@ -662,15 +662,15 @@ class BaseExternalDbsourceBOne(models.Model):
                 }
             )
 
-    def _prepare_partner_bank_data_a3(
-        self, row, second_bank, partner, bank, acc_number
-    ):
+    def _prepare_partner_bank_data_a3(self, row, second_bank, bank, acc_number):
         iban = self.calcularIBAN(acc_number)
+        partner_id = self.importer.get_m2_odoo_id("res.partner", f"{row.CODIGO}")
+        partner = self.env["res.partner"].browse(partner_id)
         vals = {
             "bank_id": bank,
             "acc_number": iban,
             "partner_id": partner.commercial_partner_id.id,
-            "a3_key": acc_number,
+            "a3_key": f"{row.CODIGO}-{acc_number}",
             "company_id": False,
         }
         return vals
@@ -689,17 +689,13 @@ class BaseExternalDbsourceBOne(models.Model):
         """
         where = """
             WHERE (c.COD_BANCO_1 > 0 or c.COD_BANCO_2 > 0)
-            --and CODIGO = 'G00032'
+            --and CODIGO = 'G00031'
         """
         ext_records, records, records_dic = self.importer.load_data(
             "res.partner.bank", table, fields=fields_sql, where=where
         )
 
         for ext_rec in ext_records:
-            partner_id = self.importer.get_m2_odoo_id(
-                "res.partner", f"{ext_rec.CODIGO}"
-            )
-            partner = self.env["res.partner"].browse(partner_id)
             if ext_rec.COD_BANCO_1 > 1:
                 format_bank = self.format_number_bank_code(ext_rec.COD_BANCO_1)
                 format_agencia = self.format_number_bank_code(ext_rec.COD_AGENCIA_1)
@@ -710,7 +706,7 @@ class BaseExternalDbsourceBOne(models.Model):
                 bank = self.get_bank_id_by_code(format_bank)
                 if bank:
                     vals = self._prepare_partner_bank_data_a3(
-                        ext_rec, False, partner, bank, bank_account
+                        ext_rec, False, bank, bank_account
                     )
                     if not vals.get("partner_id", False):
                         continue
@@ -732,7 +728,7 @@ class BaseExternalDbsourceBOne(models.Model):
                 bank = self.get_bank_id_by_code(format_bank)
                 if bank:
                     vals = self._prepare_partner_bank_data_a3(
-                        ext_rec, True, partner, bank, bank_account
+                        ext_rec, True, bank, bank_account
                     )
                     if not vals.get("partner_id", False):
                         continue
@@ -748,7 +744,7 @@ class BaseExternalDbsourceBOne(models.Model):
             "format": "sepa",
             "company_id": 1,
             "partner_bank_id": self.importer.get_m2_odoo_id(
-                "res.partner.bank", f"{bank_account}"
+                "res.partner.bank", f"{row.CODIGO}-{bank_account}"
             ),
             "signature_date": row.FECHA_MANDATO,
             "scheme": row.MOD_ADEUDO.strip(),
