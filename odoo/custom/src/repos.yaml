@@ -25,6 +25,16 @@ edi:
     - origin $ODOO_VERSION
     - origin refs/pull/1056/head # base_import_pdf_by_template_account
 
+bank-payment:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/bank-payment.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/1378/head # stesi:17.0_fix_missing_company_currency_field
+
 contract:
   defaults:
     depth: $DEPTH_MERGE
