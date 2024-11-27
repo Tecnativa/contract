@@ -241,6 +241,16 @@ msgid "Products"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Update mandate company"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Update mandates company from contracts"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
 #: model:ir.model,name:base_external_dbsource_mssql_a3.model_res_users
 msgid "User"
 msgstr ""
