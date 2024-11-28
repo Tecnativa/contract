@@ -169,7 +169,9 @@ class BaseExternalDbsourceBOne(models.Model):
                 "res.users", f"RES-{row.COD_RESPONSABLE}"
             ),
             "active": False if row.FECHA_BAJA else True,
-            "property_payment_term_id": self._get_payment_term(row.FORMA_PAGO),
+            "property_payment_term_id": self._get_payment_term(
+                f"{int(row.FORMA_PAGO)}-{int(row.DIA_PAGO_1)}"
+            ),
         }
         vals = self._validate_vat(vals, self.env.ref("base.es").code)
         if row.OBSERVACIONES:
@@ -186,7 +188,8 @@ class BaseExternalDbsourceBOne(models.Model):
         gc.NUMERO_FIS,gc.ESCALERA_FIS,gc.PISO_FIS,gc.PUERTA_FIS,
         gc.MUNICIPIO_FIS,gc.PROVINCIA_FIS,gc.TELEFONO_FIS,
         gc.FECHA_ALTA,gc.FECHA_BAJA,gc.CODIGO_CNAE,gc.COD_RESPONSABLE, gc.SIGLAS_FIS,
-        gc.REMESAS, gc.MOD_ADEUDO, gc.SECUENCIA, gc.COD_BANCO_1
+        gc.REMESAS, gc.MOD_ADEUDO, gc.SECUENCIA, gc.COD_BANCO_1, gc.DIA_PAGO_1,
+        gc.DIA_PAGO_2, gc.DTO_CLIENTE
         """
         table = "dbo.GES_CLIENTES gc"
         where = """
@@ -247,7 +250,9 @@ class BaseExternalDbsourceBOne(models.Model):
             for company in a3_companies_dic.values():
                 partner.sudo().with_company(
                     company
-                ).property_payment_term_id = self._get_payment_term(ext_rec.FORMA_PAGO)
+                ).property_payment_term_id = self._get_payment_term(
+                    f"{int(ext_rec.FORMA_PAGO)}-{int(ext_rec.DIA_PAGO_1)}"
+                )
             odoo_companies = self.env["res.company"].sudo().search([])
             for company in odoo_companies:
                 payment_mode = "Transfer"
@@ -982,13 +987,50 @@ class BaseExternalDbsourceBOne(models.Model):
         # SELECT * FROM GES_TABLA_FORMAS_PAGO gtfp
         # WHERE CODIGO IN (SELECT gc.FORMA_PAGO FROM GES_CLIENTES gc)
         values = {
-            0: self.env.ref("account.account_payment_term_immediate").id,
-            1: self.env.ref("account.account_payment_term_immediate").id,
-            5: self.env.ref("account.account_payment_term_30days").id,
-            6: self.env.ref("blegal_custom.account_payment_term_90days").id,
-            7: self.env.ref("blegal_custom.account_payment_term_end_quarter").id,
-            8: self.env.ref(
+            "0-0": self.env.ref("account.account_payment_term_immediate").id,
+            "1-0": self.env.ref("account.account_payment_term_immediate").id,
+            "1-1": self.env.ref(
+                "blegal_custom.account_payment_term_immediate_day_1"
+            ).id,
+            "1-2": self.env.ref(
+                "blegal_custom.account_payment_term_immediate_day_2"
+            ).id,
+            "1-5": self.env.ref(
+                "blegal_custom.account_payment_term_immediate_day_5"
+            ).id,
+            "1-10": self.env.ref(
+                "blegal_custom.account_payment_term_immediate_day_10"
+            ).id,
+            "1-15": self.env.ref(
+                "blegal_custom.account_payment_term_immediate_day_15"
+            ).id,
+            "1-20": self.env.ref(
+                "blegal_custom.account_payment_term_immediate_day_20"
+            ).id,
+            "1-25": self.env.ref(
+                "blegal_custom.account_payment_term_immediate_day_25"
+            ).id,
+            "1-30": self.env.ref(
+                "blegal_custom.account_payment_term_immediate_day_30"
+            ).id,
+            "5-0": self.env.ref("account.account_payment_term_30days").id,
+            "5-1": self.env.ref("blegal_custom.account_payment_term_30days_day_1").id,
+            "5-5": self.env.ref("blegal_custom.account_payment_term_30days_day_5").id,
+            "5-10": self.env.ref("blegal_custom.account_payment_term_30days_day_10").id,
+            "5-20": self.env.ref("blegal_custom.account_payment_term_30days_day_20").id,
+            "5-25": self.env.ref("blegal_custom.account_payment_term_30days_day_25").id,
+            "5-30": self.env.ref("blegal_custom.account_payment_term_30days_day_30").id,
+            "6-0": self.env.ref("blegal_custom.account_payment_term_90days").id,
+            "6-25": self.env.ref("blegal_custom.account_payment_term_90days_day_25").id,
+            "7-0": self.env.ref("blegal_custom.account_payment_term_end_quarter").id,
+            "7-1": self.env.ref(
+                "blegal_custom.account_payment_term_end_quarter_day_1"
+            ).id,
+            "8-0": self.env.ref(
                 "blegal_custom.account_payment_term_30_60_90_120_150days"
+            ).id,
+            "8-30": self.env.ref(
+                "blegal_custom.account_payment_term_30_60_90_120_150days_day_30"
             ).id,
         }
         return values[pay_term]

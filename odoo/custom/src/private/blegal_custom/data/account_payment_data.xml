@@ -17,27 +17,206 @@
             eval="[(5, 0), (0, 0, {'value': 'percent', 'value_amount': 100.0, 'nb_days': 90, 'delay_type': 'days_after'})]"
         />
     </record>
-    <record id="account_payment_term_30_60_90_120_150days" model="account.payment.term">
-        <field name="name">6 Vencimientos</field>
-        <field name="note">Plazo de pago: 6 Vencimientos</field>
+    <!-- Forma de pago 1-1 A la vista día 1 -->
+    <record id="account_payment_term_immediate_day_1" model="account.payment.term">
+        <field name="name">A la vista día 1</field>
+        <field name="note">Plazo de pago: A la vista día 1</field>
         <field
             name="line_ids"
-            eval="[(5, 0),
-            (0, 0, {'nb_days': 30, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
-            (0, 0, {'nb_days': 60, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
-            (0, 0, {'nb_days': 90, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
-            (0, 0, {'nb_days': 120, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
-            (0, 0, {'nb_days': 150, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
-            ]"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days':1})]"
         />
     </record>
-    <!-- TODO: Setting correctly -->
+
+    <!-- Forma de pago 1-2 A la vista día 2 -->
+    <record id="account_payment_term_immediate_day_2" model="account.payment.term">
+        <field name="name">A la vista día 2</field>
+        <field name="note">Plazo de pago: A la vista día 2</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days':2})]"
+        />
+    </record>
+
+    <!-- Forma de pago 1-2 A la vista día 5 -->
+    <record id="account_payment_term_immediate_day_5" model="account.payment.term">
+        <field name="name">A la vista día 5</field>
+        <field name="note">Plazo de pago: A la vista día 5</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days': 5})]"
+        />
+    </record>
+
+    <!-- Forma de pago 1-2 A la vista día 10 -->
+    <record id="account_payment_term_immediate_day_10" model="account.payment.term">
+        <field name="name">A la vista día 10</field>
+        <field name="note">Plazo de pago: A la vista día 10</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days': 10})]"
+        />
+    </record>
+
+    <!-- Forma de pago 1-2 A la vista día 15 -->
+    <record id="account_payment_term_immediate_day_15" model="account.payment.term">
+        <field name="name">A la vista día 15</field>
+        <field name="note">Plazo de pago: A la vista día 15</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days': 15})]"
+        />
+    </record>
+
+    <!-- Forma de pago 1-2 A la vista día 20 -->
+    <record id="account_payment_term_immediate_day_20" model="account.payment.term">
+        <field name="name">A la vista día 20</field>
+        <field name="note">Plazo de pago: A la vista día 20</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days': 20})]"
+        />
+    </record>
+
+    <!-- Forma de pago 1-2 A la vista día 25 -->
+    <record id="account_payment_term_immediate_day_25" model="account.payment.term">
+        <field name="name">A la vista día 25</field>
+        <field name="note">Plazo de pago: A la vista día 25</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days': 25})]"
+        />
+    </record>
+
+    <!-- Forma de pago 1-2 A la vista día 30 -->
+    <record id="account_payment_term_immediate_day_30" model="account.payment.term">
+        <field name="name">A la vista día 30</field>
+        <field name="note">Plazo de pago: A la vista día 30</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days': 30})]"
+        />
+    </record>
+
+    <!-- Forma de pago 5-1 A 30 días día 1 -->
+    <record id="account_payment_term_30days_day_1" model="account.payment.term">
+        <field name="name">A 30 días dia 1</field>
+        <field name="note">Plazo de pago: 30 Días día 1</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 30, 'delay_type': 'days_after', 'payment_days': 1})]"
+        />
+    </record>
+
+    <!-- Forma de pago 5-5 A 30 días día 5 -->
+    <record id="account_payment_term_30days_day_5" model="account.payment.term">
+        <field name="name">A 30 días dia 5</field>
+        <field name="note">Plazo de pago: 30 Días día 5</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 30, 'delay_type': 'days_after', 'payment_days': 5})]"
+        />
+    </record>
+
+    <!-- Forma de pago 5-10 A 30 días día 10 -->
+    <record id="account_payment_term_30days_day_10" model="account.payment.term">
+        <field name="name">A 30 días dia 10</field>
+        <field name="note">Plazo de pago: 30 Días día 10</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 30, 'delay_type': 'days_after', 'payment_days': 10})]"
+        />
+    </record>
+
+    <!-- Forma de pago 5-20 A 30 días día 20 -->
+    <record id="account_payment_term_30days_day_20" model="account.payment.term">
+        <field name="name">A 30 días dia 20</field>
+        <field name="note">Plazo de pago: 30 Días día 20</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 30, 'delay_type': 'days_after', 'payment_days': 20})]"
+        />
+    </record>
+
+    <!-- Forma de pago 5-25 A 30 días día 25 -->
+    <record id="account_payment_term_30days_day_25" model="account.payment.term">
+        <field name="name">A 30 días dia 25</field>
+        <field name="note">Plazo de pago: 30 Días día 25</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 30, 'delay_type': 'days_after', 'payment_days': 25})]"
+        />
+    </record>
+
+    <!-- Forma de pago 5-30 A 30 días día 30 -->
+    <record id="account_payment_term_30days_day_30" model="account.payment.term">
+        <field name="name">A 30 días dia 30</field>
+        <field name="note">Plazo de pago: 30 Días día 30</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 30, 'delay_type': 'days_after', 'payment_days': 30})]"
+        />
+    </record>
+
+    <!-- Forma de pago 6-25 A 90 días día 25 -->
+    <record id="account_payment_term_90days_day_25" model="account.payment.term">
+        <field name="name">A 90 días día 25</field>
+        <field name="note">Plazo de pago: 90 Días día 25</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.0, 'nb_days': 90, 'delay_type': 'days_after', 'payment_days': 25})]"
+        />
+    </record>
+
     <record id="account_payment_term_end_quarter" model="account.payment.term">
         <field name="name">Fin trimestre</field>
         <field name="note">Plazo de pago: Fin trimestre</field>
         <field
             name="line_ids"
-            eval="[(5, 0), (0, 0, {'value': 'percent', 'value_amount': 100.00, 'nb_days': 0, 'delay_type': 'days_after'})]"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.00, 'nb_days': 0, 'delay_type': 'days_after'})]"
+        />
+    </record>
+
+    <!-- Forma de pago 7-1 Fin trimestre día 1 -->
+    <record id="account_payment_term_end_quarter_day_1" model="account.payment.term">
+        <field name="name">Fin trimestre día 1</field>
+        <field name="note">Plazo de pago: Fin trimestre día 1</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(), Command.create({'value': 'percent', 'value_amount': 100.00, 'nb_days': 0, 'delay_type': 'days_after', 'payment_days': 1})]"
+        />
+    </record>
+
+    <record id="account_payment_term_30_60_90_120_150days" model="account.payment.term">
+        <field name="name">6 Vencimientos</field>
+        <field name="note">Plazo de pago: 6 Vencimientos</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(),
+            Command.create({'nb_days': 30, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            Command.create({'nb_days': 60, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            Command.create({'nb_days': 90, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            Command.create({'nb_days': 120, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            Command.create({'nb_days': 150, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0}),
+            ]"
+        />
+    </record>
+
+    <!-- Forma de pago 8-30 6 Vencimientos día 30 -->
+    <record
+        id="account_payment_term_30_60_90_120_150days_day_30"
+        model="account.payment.term"
+    >
+        <field name="name">6 Vencimientos día 30</field>
+        <field name="note">Plazo de pago: 6 Vencimientos día 30</field>
+        <field
+            name="line_ids"
+            eval="[Command.clear(),
+            Command.create({'nb_days': 30, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0, 'payment_days': 30}),
+            Command.create({'nb_days': 60, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0, 'payment_days': 30}),
+            Command.create({'nb_days': 90, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0, 'payment_days': 30}),
+            Command.create({'nb_days': 120, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0, 'payment_days': 30}),
+            Command.create({'nb_days': 150, 'delay_type': 'days_after', 'value': 'percent', 'value_amount': 20.0, 'payment_days': 30}),
+            ]"
         />
     </record>
 
