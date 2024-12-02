@@ -6,7 +6,11 @@
     "author": "Tecnativa",
     "category": "Accounting/Accounting",
     "website": "https://www.tecnativa.com",
-    "depends": ["account", "base_import_pdf_by_template_account"],
+    "depends": [
+        "account",
+        "account_payment_term_extension",
+        "base_import_pdf_by_template_account",
+    ],
     "data": [
         "data/account_payment_data.xml",
         # "data/product_attribute_data.xml",
