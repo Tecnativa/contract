@@ -270,9 +270,25 @@ msgid "Process PDF from template"
 msgstr ""
 
 #. module: blegal_custom
+#: model:ir.model.fields,field_description:blegal_custom.field_account_bank_statement_line__is_portal_published
+#: model:ir.model.fields,field_description:blegal_custom.field_account_move__is_portal_published
+#: model:ir.model.fields,field_description:blegal_custom.field_account_payment__is_portal_published
+msgid "Published in portal?"
+msgstr ""
+
+#. module: blegal_custom
 #: model:ir.model.fields,field_description:blegal_custom.field_res_partner__registration_date
 #: model:ir.model.fields,field_description:blegal_custom.field_res_users__registration_date
 msgid "Registration Date"
+msgstr ""
+
+#. module: blegal_custom
+#. odoo-python
+#: code:addons/blegal_custom/models/account_move.py:0
+#, python-format
+msgid ""
+"This invoice can't be published to the portal because the analytic "
+"distribution has no customer set."
 msgstr ""
 
 #. module: blegal_custom
