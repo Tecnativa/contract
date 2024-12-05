@@ -142,6 +142,23 @@ class TestBaseImportPdfByTemplateBgbl(TestBaseImportPdfByTemplateBase):
         self.assertEqual(record.invoice_line_ids.quantity, 1)
         self.assertEqual(record.invoice_line_ids.price_unit, 10.90)
 
+    def test_account_invoice_bgbl_hgm(self):
+        self._set_template_values("account_move_hgm")
+        attachment = self._create_ir_attachment("bgbl/account-move-hgm.pdf")
+        wizard = self._create_wizard_base_import_pdf_upload(attachment)
+        res = wizard.action_process()
+        self.assertEqual(res["res_model"], "account.move")
+        record = self.env[res["res_model"]].browse(res["res_id"])
+        self.assertIn(attachment, record.attachment_ids)
+        self.assertEqual(record.move_type, "in_invoice")
+        self.assertEqual(record.ref, "232791")
+        self.assertEqual(record.invoice_date, datetime.date(2024, 12, 2))
+        self.assertEqual(record.partner_id, self.partner)
+        self.assertEqual(len(record.invoice_line_ids), 1)
+        self.assertEqual(record.invoice_line_ids.product_id, self.product)
+        self.assertEqual(record.invoice_line_ids.quantity, 1)
+        self.assertEqual(record.invoice_line_ids.price_unit, 14)
+
     def test_account_invoice_bgbl_julia_fargas(self):
         self._set_template_values("account_move_julia_fargas")
         attachment = self._create_ir_attachment("bgbl/account-move-julia_fargas.pdf")

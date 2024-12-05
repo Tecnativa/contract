@@ -8,7 +8,7 @@ class WizardBaseImportPdfMixin(models.AbstractModel):
     _inherit = "wizard.base.import.pdf.mixin"
 
     def _pdf_text_extraction_pypdf(self, fileobj):
-        """Compatibilidad plantilla Movistar."""
+        """Compatibilidad plantilla FORMAT S.A."""
         res = super()._pdf_text_extraction_pypdf(fileobj)
         for index, item in enumerate(res):
             res[index] = item.replace("\x00", "")
