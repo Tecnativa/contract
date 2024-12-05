@@ -23,6 +23,41 @@ msgid "6 Vencimientos"
 msgstr ""
 
 #. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_30_60_90_120_150days_day_30
+msgid "6 Vencimientos día 30"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_30days_day_1
+msgid "A 30 días dia 1"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_30days_day_10
+msgid "A 30 días dia 10"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_30days_day_20
+msgid "A 30 días dia 20"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_30days_day_25
+msgid "A 30 días dia 25"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_30days_day_30
+msgid "A 30 días dia 30"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_30days_day_5
+msgid "A 30 días dia 5"
+msgstr ""
+
+#. module: blegal_custom
 #: model:account.payment.term,name:blegal_custom.account_payment_term_60days
 msgid "A 60 días"
 msgstr ""
@@ -30,6 +65,56 @@ msgstr ""
 #. module: blegal_custom
 #: model:account.payment.term,name:blegal_custom.account_payment_term_90days
 msgid "A 90 días"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_90days_day_25
+msgid "A 90 días día 25"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_immediate_day_1
+msgid "A la vista día 1"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_immediate_day_10
+msgid "A la vista día 10"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_immediate_day_15
+msgid "A la vista día 15"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_immediate_day_2
+msgid "A la vista día 2"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_immediate_day_20
+msgid "A la vista día 20"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_immediate_day_25
+msgid "A la vista día 25"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_immediate_day_30
+msgid "A la vista día 30"
+msgstr ""
+
+#. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_immediate_day_5
+msgid "A la vista día 5"
+msgstr ""
+
+#. module: blegal_custom
+#: model:ir.model,name:blegal_custom.model_base_import_pdf_template_line
+msgid "Base Import Pdf Template Line"
 msgstr ""
 
 #. module: blegal_custom
@@ -55,6 +140,11 @@ msgid "Fin trimestre"
 msgstr ""
 
 #. module: blegal_custom
+#: model:account.payment.term,name:blegal_custom.account_payment_term_end_quarter_day_1
+msgid "Fin trimestre día 1"
+msgstr ""
+
+#. module: blegal_custom
 #: model:ir.model,name:blegal_custom.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
@@ -74,8 +164,43 @@ msgid "Only invoices can be reprocessed."
 msgstr "Solo se pueden reprocesar facturas."
 
 #. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30days_day_1
+msgid "Plazo de pago: 30 Días día 1"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30days_day_10
+msgid "Plazo de pago: 30 Días día 10"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30days_day_20
+msgid "Plazo de pago: 30 Días día 20"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30days_day_25
+msgid "Plazo de pago: 30 Días día 25"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30days_day_30
+msgid "Plazo de pago: 30 Días día 30"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30days_day_5
+msgid "Plazo de pago: 30 Días día 5"
+msgstr ""
+
+#. module: blegal_custom
 #: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30_60_90_120_150days
 msgid "Plazo de pago: 6 Vencimientos"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_30_60_90_120_150days_day_30
+msgid "Plazo de pago: 6 Vencimientos día 30"
 msgstr ""
 
 #. module: blegal_custom
@@ -89,8 +214,58 @@ msgid "Plazo de pago: 90 Días"
 msgstr ""
 
 #. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_90days_day_25
+msgid "Plazo de pago: 90 Días día 25"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_immediate_day_1
+msgid "Plazo de pago: A la vista día 1"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_immediate_day_10
+msgid "Plazo de pago: A la vista día 10"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_immediate_day_15
+msgid "Plazo de pago: A la vista día 15"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_immediate_day_2
+msgid "Plazo de pago: A la vista día 2"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_immediate_day_20
+msgid "Plazo de pago: A la vista día 20"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_immediate_day_25
+msgid "Plazo de pago: A la vista día 25"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_immediate_day_30
+msgid "Plazo de pago: A la vista día 30"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_immediate_day_5
+msgid "Plazo de pago: A la vista día 5"
+msgstr ""
+
+#. module: blegal_custom
 #: model_terms:account.payment.term,note:blegal_custom.account_payment_term_end_quarter
 msgid "Plazo de pago: Fin trimestre"
+msgstr ""
+
+#. module: blegal_custom
+#: model_terms:account.payment.term,note:blegal_custom.account_payment_term_end_quarter_day_1
+msgid "Plazo de pago: Fin trimestre día 1"
 msgstr ""
 
 #. module: blegal_custom
@@ -105,26 +280,6 @@ msgid "Registration Date"
 msgstr "Fecha de alta"
 
 #. module: blegal_custom
-#: model:product.template,name:blegal_custom.product_product_aws_product_template
-msgid "Test AWS Product"
-msgstr ""
-
-#. module: blegal_custom
-#: model:product.template,name:blegal_custom.product_product_creinsa_product_template
-msgid "Test Creinsa Product"
-msgstr ""
-
-#. module: blegal_custom
-#: model:product.template,name:blegal_custom.product_product_google_product_template
-msgid "Test Google Product"
-msgstr ""
-
-#. module: blegal_custom
-#: model:product.template,name:blegal_custom.product_product_ionos_product_template
-msgid "Test Ionos Product"
-msgstr ""
-
-#. module: blegal_custom
-#: model:product.template,name:blegal_custom.product_product_ovh_product_template
-msgid "Test OVH Product"
+#: model:ir.model,name:blegal_custom.model_wizard_base_import_pdf_mixin
+msgid "Wizard Base Import Pdf Mixin"
 msgstr ""

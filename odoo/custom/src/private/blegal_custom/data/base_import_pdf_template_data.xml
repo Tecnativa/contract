@@ -1,0 +1,4263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- AWS -->
+    <record id="account_move_aws" model="base.import.pdf.template">
+        <field name="name">Facturas de compra AWS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(console.aws.amazon.com)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record id="account_move_aws_line_partner_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_aws" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record id="account_move_aws_line_move_type" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_aws" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_aws_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_aws" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">VAT Invoice Number: ([A-Z-0-9]{8}-[0-9]{5})</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_aws_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aws" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field
+            name="pattern"
+        >VAT Invoice Date: ([A-Z-a-z]{3,9} [0-9]{1,2}, [0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*B *d, *Y</field>
+    </record>
+    <record id="account_move_aws_line_product_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_aws" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field
+            name="pattern"
+        >(Net Charges [(]After Credits\SDiscounts. excl. Tax[)])</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record id="account_move_aws_line_price_unit" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_aws" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field
+            name="pattern"
+        >Net Charges [(]After Credits\SDiscounts. excl. Tax[)] EUR ([0-9]{1,4}.[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">dot</field>
+    </record>
+    <record
+        id="account_move_aws_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aws" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Creinsa -->
+    <record id="account_move_creinsa" model="base.import.pdf.template">
+        <field name="name">Facturas de compra Creinsa</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(creinsa.com)</field>
+        <field name="header_items">Codigo,PVP,Unidades,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_creinsa_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_creinsa" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_creinsa_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_creinsa" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_creinsa_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_creinsa" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Fecha:\s(.*)\s</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_creinsa_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_creinsa" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha:\s.*\s(.*)\s</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_creinsa_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_creinsa" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">[0-9]{2} €(ASE-.*)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__seller_ids" />
+        <field
+            name="search_subfield_id"
+            ref="product.field_product_supplierinfo__product_code"
+        />
+    </record>
+    <record
+        id="account_move_creinsa_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_creinsa" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field
+            name="pattern"
+        >([0-9]{2,3},[0-9]{2}) [0-9]{1},00 [0-9]{1,3},[0-9]{2} €ASE-</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_creinsa_line_quantity"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_creinsa" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__quantity" />
+        <field name="column">2</field>
+        <field
+            name="pattern"
+        >[0-9]{2,3},[0-9]{2} ([0-9]{1},[0-9]{2}) [0-9]{1,3},[0-9]{2} €ASE-</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_creinsa_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_creinsa" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">3</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Google -->
+    <record id="account_move_google" model="base.import.pdf.template">
+        <field name="name">Facturas de compra Google</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Google Cloud EMEA)</field>
+        <field name="header_items">Producto,Cantidad,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_google_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_google_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_google_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_google" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Invoice number: ([0-9]*)\sPage</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_google_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">[.]([0-9]{1,2} [a-zA-Z]{3,4} [0-9]{4})\s</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d *b-short *Y</field>
+    </record>
+    <record
+        id="account_move_google_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">Invoice number: ([0-9]*)\sPage</field>
+        <field name="search_field_id" ref="product.field_product_product__seller_ids" />
+        <field
+            name="search_subfield_id"
+            ref="product.field_product_supplierinfo__product_code"
+        />
+    </record>
+    <record
+        id="account_move_google_line_quantity"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__quantity" />
+        <field name="column">1</field>
+        <field name="pattern">([0-9]{1,2}) [0-9]{2,3}[.][0-9]{2}\s</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_google_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">2</field>
+        <field name="pattern">[0-9]{1,2} ([0-9]{2,3}[.][0-9]{2})\s</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_google_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">3</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Ionos -->
+    <record id="account_move_ionos" model="base.import.pdf.template">
+        <field name="name">Facturas de compra Ionos</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(IONOS Cloud)</field>
+        <field name="header_items">Producto,Cuota,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_ionos_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ionos" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_ionos_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ionos" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_ionos_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_ionos" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">N.° de factura: ([0-9]*)\s</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_ionos_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ionos" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha de facturación: ([0-9|\/]{8})\s</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*y-short</field>
+    </record>
+    <record
+        id="account_move_ionos_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ionos" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">Contrato: ([0-9]{8}) - IONOS</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__seller_ids" />
+        <field
+            name="search_subfield_id"
+            ref="product.field_product_supplierinfo__product_code"
+        />
+    </record>
+    <record
+        id="account_move_ionos_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ionos" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Cuota [(]([0-9]{1,2},[0-9]{2}) EUR[)]</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_ionos_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ionos" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- OVH -->
+    <record id="account_move_ovh" model="base.import.pdf.template">
+        <field name="name">Facturas de compra OVH</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(OVH HISPANO S.L)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record id="account_move_ovh_line_partner_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_ovh" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record id="account_move_ovh_line_move_type" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_ovh" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_ovh_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_ovh" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Referencia de la factura:\s\s([A-Z-0-9]{9})\s</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_ovh_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ovh" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha de emisión:\s\s([0-9]{2}.[0-9]{2}.[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record id="account_move_ovh_line_product_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_ovh" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">Factura\s\sn°([A-Z-0-9]{9})</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record id="account_move_ovh_line_price_unit" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_ovh" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field
+            name="pattern"
+        >Total de la factura, IVA no incl.\s([0-9]{1,4}.[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">dot</field>
+    </record>
+    <record
+        id="account_move_ovh_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ovh" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Taaf !-->
+    <record id="account_move_taaf" model="base.import.pdf.template">
+        <field name="name">Facturas de compra TAAF</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(TAAF, S.L.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_taaf_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_taaf" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record id="account_move_taaf_line_move_type" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_taaf" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_taaf_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_taaf" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura\n.*\n(.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_taaf_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_taaf" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha\n([0-9]{2}\/[0-9]{2}\/[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_taaf_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_taaf" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(BG ADMINISTRADORES, S.L.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_taaf_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_taaf" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Base  (\n[0-9]{1,4},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_taaf_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_taaf" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Tennablia !-->
+    <record id="account_move_tennablia" model="base.import.pdf.template">
+        <field name="name">Facturas de compra TENNABLIA</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(TENNABLIA, SL)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_tennablia_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tennablia" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_tennablia_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tennablia" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_tennablia_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_tennablia" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura nº (.*)\n</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_tennablia_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tennablia" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Emitida ([0-9]{2}\/[0-9]{2}\/[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_tennablia_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tennablia" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(TENNABLIA, SL)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_tennablia_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tennablia" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Base imponible\n(.*) €</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+        <field name="thousand_separator">dot</field>
+    </record>
+    <record
+        id="account_move_tennablia_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tennablia" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Wanme !-->
+    <record id="account_move_wanme" model="base.import.pdf.template">
+        <field name="name">Facturas de compra WANME</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(WANNME Marketplace S.L.U)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_wanme_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_wanme" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_wanme_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_wanme" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_wanme_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_wanme" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">FACTURA (#.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_wanme_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_wanme" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha ([0-9]{2}\/[0-9]{2}\/[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_wanme_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_wanme" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(WANNME Marketplace S.L.U)\n</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_wanme_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_wanme" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">BASE IMPONIBLE (.*)€</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_wanme_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_wanme" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Bgbl !-->
+    <record id="account_move_bgbl" model="base.import.pdf.template">
+        <field name="name">Facturas de compra BGBL</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(N.I.F. B56769086)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_bgbl_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_bgbl" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record id="account_move_bgbl_line_move_type" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_bgbl" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_bgbl_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_bgbl" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">12 ([0-9-\/]*) 1</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_bgbl_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_bgbl" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field
+            name="pattern"
+        >¡Error! Nombre de archivo no válido.*\n([0-9]{2}\/[0-9]{2}\/[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*y-short</field>
+    </record>
+    <record
+        id="account_move_bgbl_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_bgbl" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(BGBL GLOBAL, S.L.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_bgbl_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_bgbl" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">12 [0-9-\/]* 1 \n([0-9-.]{2,8},[0-9]{2}) 21</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+        <field name="thousand_separator">dot</field>
+    </record>
+    <record
+        id="account_move_bgbl_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_bgbl" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Claris !-->
+    <record id="account_move_claris" model="base.import.pdf.template">
+        <field name="name">Facturas de compra CLARIS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(CLARIS SERVEIS PER L'EMPRESA, S.L.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_claris_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_claris" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_claris_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_claris" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_claris_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_claris" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">12 ([0-9-\/]*) 1</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_claris_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_claris" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">([0-9]{2}\/[0-9]{2}\/[0-9]{2}).*12</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*y-short</field>
+    </record>
+    <record
+        id="account_move_claris_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_claris" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(CLARIS SERVEIS PER L'EMPRESA, S.L.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_claris_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_claris" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">12 [0-9-\/]* 1 \n([0-9-.]{2,8},[0-9]{2}) 21</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+        <field name="thousand_separator">dot</field>
+    </record>
+    <record
+        id="account_move_claris_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_claris" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Control !-->
+    <record id="account_move_control" model="base.import.pdf.template">
+        <field name="name">Facturas de compra CONTROL</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(SISTEMES D'ORGANITZACIÓ, SA)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_control_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_control" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_control_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_control" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_control_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_control" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Codi Client(.*\n[0-9]*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_control_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_control" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Codi Client.*\n.*\n([0-9]{2}-[0-9]{2}-[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d-*m-*Y</field>
+    </record>
+    <record
+        id="account_move_control_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_control" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(SISTEMES D'ORGANITZACIÓ, SA)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_control_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_control" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Net Línia\n([0-9]{1,3},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_control_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_control" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Gesprat !-->
+    <record id="account_move_gesprat" model="base.import.pdf.template">
+        <field name="name">Facturas de compra GESPRAT</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(GESPRAT ASSESSORS EMPRESA SL)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_gesprat_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_gesprat" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_gesprat_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_gesprat" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_gesprat_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_gesprat" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">12 ([0-9-\/]*) 1</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_gesprat_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_gesprat" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">([0-9]{2}\/[0-9]{2}\/[0-9]{2}).*12</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*y-short</field>
+    </record>
+    <record
+        id="account_move_gesprat_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_gesprat" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(GESPRAT ASSESSORS EMPRESA SL)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_gesprat_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_gesprat" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">12 [0-9-\/]* 1 \n([0-9-.]{2,8},[0-9]{2}) 21</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_gesprat_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_gesprat" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Innov despacho !-->
+    <record id="account_move_innov_despacho" model="base.import.pdf.template">
+        <field name="name">Facturas de compra CENTRO INNOV.DESPACHO</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(CENTRO DE INNOVACIÓN DESPACHOS)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_innov_despacho_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_innov_despacho" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_innov_despacho_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_innov_despacho" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_innov_despacho_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_innov_despacho" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Cliente CIF\/DNI:(.*)\n</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_innov_despacho_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_innov_despacho" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field
+            name="pattern"
+        >Cliente CIF\/DNI:.*\nA\n([0-9]{2}\/[0-9]{2}\/[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_innov_despacho_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_innov_despacho" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(CENTRO DE INNOVACIÓN DESPACHOS)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_innov_despacho_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_innov_despacho" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Base IVA\nIVA\n([0-9]{1,4},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_innov_despacho_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_innov_despacho" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Manuel robles !-->
+    <record id="account_move_manuel_robles" model="base.import.pdf.template">
+        <field name="name">Facturas de compra MANUEL ROBLES</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(MANUEL ROBLES RODRIGUEZ)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_manuel_robles_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_manuel_robles" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_manuel_robles_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_manuel_robles" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_manuel_robles_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_manuel_robles" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">FACTURA Nº (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_manuel_robles_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_manuel_robles" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Nombre Fecha (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d-*b-*y</field>
+    </record>
+    <record
+        id="account_move_manuel_robles_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_manuel_robles" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(MANUEL ROBLES RODRIGUEZ)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_manuel_robles_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_manuel_robles" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Subtotal  (.*)€</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_manuel_robles_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_manuel_robles" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Quipu !-->
+    <record id="account_move_quipu" model="base.import.pdf.template">
+        <field name="name">Facturas de compra QUIPU</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Quipu App S.L.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_quipu_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_quipu" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_quipu_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_quipu" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_quipu_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_quipu" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura nº\n(.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_quipu_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_quipu" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Emitida (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_quipu_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_quipu" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Quipu App S.L.)\nC</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_quipu_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_quipu" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Base imponible\n(.*) €</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_quipu_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_quipu" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Santiago alonso !-->
+    <record id="account_move_santiago_alonso" model="base.import.pdf.template">
+        <field name="name">Facturas de compra SANTIAGO Y ALONSO ASESORES</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(SANTIAGO Y ALONSO ASESORES, C.B.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_santiago_alonso_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_santiago_alonso" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_santiago_alonso_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_santiago_alonso" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_santiago_alonso_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_santiago_alonso" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">BARCELONA 1 ([A-Z-0-9]{6}) 1 </field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_santiago_alonso_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_santiago_alonso" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">BARCELONA 1 .* 1 (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_santiago_alonso_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_santiago_alonso" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(BARCELONA 1 .* 1)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_santiago_alonso_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_santiago_alonso" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">www.1kbcode.com.*\n([0-9-.]{1,5},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+        <field name="thousand_separator">dot</field>
+    </record>
+    <record
+        id="account_move_santiago_alonso_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_santiago_alonso" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Siemens !-->
+    <record id="account_move_siemens" model="base.import.pdf.template">
+        <field name="name">Facturas de compra SIEMENS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Siemens Financial Services, S.A.U.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_siemens_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_siemens" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_siemens_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_siemens" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_siemens_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_siemens" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Fecha Doc.   :\n([0-9]{14})</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_siemens_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_siemens" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Periodo.*:  ([0-9]{2}.[0-9]{2}.[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d.*m.*Y</field>
+    </record>
+    <record
+        id="account_move_siemens_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_siemens" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Siemens Financial Services, S.A.U.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_siemens_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_siemens" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Importe Neto *([0-9]{1,3},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_siemens_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_siemens" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Araceli !-->
+    <record id="account_move_araceli" model="base.import.pdf.template">
+        <field name="name">Facturas de compra ARACELI</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(ARACELI BELTRAN)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_araceli_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_araceli" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_araceli_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_araceli" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_araceli_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_araceli" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Número de factura (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_araceli_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_araceli" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha\n([0-9]{2}\/[0-9]{2}\/[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d *B *Y</field>
+    </record>
+    <record
+        id="account_move_araceli_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_araceli" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(ARACELI BELTRAN GARCIA)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_araceli_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_araceli" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">([0-9-.]{3,5},[0-9]{2}) €.*\sIVA</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+        <field name="thousand_separator">dot</field>
+    </record>
+    <record
+        id="account_move_araceli_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_araceli" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Axesor !-->
+    <record id="account_move_axesor" model="base.import.pdf.template">
+        <field name="name">Facturas de compra AXESOR</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(CONSUMO AXESOR)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_axesor_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_axesor" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_axesor_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_axesor" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_axesor_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_axesor" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">([0-9]{8}-[A-Z]{1}) FECHA</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_axesor_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_axesor" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">FECHA: ([0-9]{2}\/[0-9]{2}\/[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_axesor_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_axesor" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(CONSUMO AXESOR)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_axesor_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_axesor" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Información Mercantil  ([0-9]{1,4},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_axesor_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_axesor" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Col graduados !-->
+    <record id="account_move_col_graduados" model="base.import.pdf.template">
+        <field name="name">Facturas de compra COL.GRADUADOS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(graduados-sociales.com)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_col_graduados_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_graduados" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_col_graduados_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_graduados" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_col_graduados_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_graduados" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Import .€.\n(.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_col_graduados_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_graduados" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Data: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_col_graduados_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_graduados" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(www.graduados-sociales.com)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_col_graduados_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_graduados" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">www.graduados-sociales.com\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_col_graduados_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_graduados" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Col registradores !-->
+    <record id="account_move_col_registradores" model="base.import.pdf.template">
+        <field name="name">Facturas de compra COL.REGISTRADORES</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(COLEGIO DE REGISTRADORES)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_col_registradores_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_registradores" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_col_registradores_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_registradores" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_col_registradores_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_registradores" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Nº FACTURA: (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_col_registradores_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_registradores" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">FECHA: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_col_registradores_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_registradores" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(COLEGIO DE REGISTRADORES)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_col_registradores_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_registradores" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Importe base total: (.*)€</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_col_registradores_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_col_registradores" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Cooltra !-->
+    <record id="account_move_cooltra" model="base.import.pdf.template">
+        <field name="name">Facturas de compra COOLTRA</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Cooltra Motos, S.L.U)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_cooltra_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cooltra" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_cooltra_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cooltra" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_cooltra_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_cooltra" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">(FS[0-9]-.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_cooltra_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cooltra" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">FS[0-9]-.*\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d-*m-*Y</field>
+    </record>
+    <record
+        id="account_move_cooltra_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cooltra" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(www.cooltra.com)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_cooltra_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cooltra" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">^[ ]{9}([0-9]{1,4},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_cooltra_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cooltra" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Deh !-->
+    <record id="account_move_deh" model="base.import.pdf.template">
+        <field name="name">Facturas de compra DEH</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(DEH Notificación Electrónica)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record id="account_move_deh_line_partner_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_deh" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record id="account_move_deh_line_move_type" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_deh" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_deh_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_deh" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">([A-Z]{2}\/.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_deh_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_deh" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">[A-Z]{2}\/.*\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record id="account_move_deh_line_product_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_deh" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(DEH Notificación Electrónica)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record id="account_move_deh_line_price_unit" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_deh" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">(^[0-9-.]{5,7}) €\n.*\n.*</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">dot</field>
+    </record>
+    <record
+        id="account_move_deh_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_deh" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Equifax !-->
+    <record id="account_move_equifax" model="base.import.pdf.template">
+        <field name="name">Facturas de compra EQUIFAX</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Equifax Ibérica S.L.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_equifax_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_equifax" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_equifax_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_equifax" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_equifax_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_equifax" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">FACTURA NUMERO (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_equifax_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_equifax" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">FECHA  (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_equifax_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_equifax" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Equifax Ibérica S.L.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_equifax_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_equifax" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">TOTAL CONCEPTOS\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_equifax_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_equifax" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Format !-->
+    <record id="account_move_format" model="base.import.pdf.template">
+        <field name="name">Facturas de compra FORMAT S.A</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(FORMAT S.A)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_format_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_format" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_format_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_format" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_format_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_format" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">FORMAT S.A.*\n(.*) [0-9]{2}-[0-9]{2}-[0-9]{4}</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_format_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_format" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">FORMAT S.A.*\n.* ([0-9]{2}-[0-9]{2}-[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d-*m-*Y</field>
+    </record>
+    <record
+        id="account_move_format_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_format" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(FORMAT S.A.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_format_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_format" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">[*]*([0-9]{1,4},[0-9]{2})\n</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_format_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_format" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Logalty !-->
+    <record id="account_move_logalty" model="base.import.pdf.template">
+        <field name="name">Facturas de compra LOGALTY</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(B84492891)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_logalty_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_logalty" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_logalty_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_logalty" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_logalty_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_logalty" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_logalty_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_logalty" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">([0-9]{2}\/[0-9]{2}\/[0-9]{4})\nATT:</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_logalty_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_logalty" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(B84492891)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_logalty_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_logalty" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Impuestos.*\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_logalty_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_logalty" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Marta !-->
+    <record id="account_move_marta" model="base.import.pdf.template">
+        <field name="name">Facturas de compra MARTA</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(MARTA CALATAYUD DRETS)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_marta_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_marta" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_marta_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_marta" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_marta_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_marta" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Nº FACTURA: (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_marta_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_marta" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">FECHA: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d.*m.*y-short</field>
+    </record>
+    <record
+        id="account_move_marta_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_marta" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(MARTA CALATAYUD DRETS)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_marta_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_marta" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">([0-9-.,]{5,9})\nIVA</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+        <field name="thousand_separator">dot</field>
+    </record>
+    <record
+        id="account_move_marta_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_marta" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Movistar !-->
+    <record id="account_move_movistar" model="base.import.pdf.template">
+        <field name="name">Facturas de compra MOVISTAR</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Telefónica)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_movistar_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_movistar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_movistar_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_movistar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_movistar_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_movistar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura núm: ([A-Z-0-9]{14})</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_movistar_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_movistar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">a partir del (.*)Telefónica</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d *B *Y</field>
+    </record>
+    <record
+        id="account_move_movistar_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_movistar" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Telefónica)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_movistar_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_movistar" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Base imponible(.*)€IVA</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_movistar_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_movistar" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Rcr !-->
+    <record id="account_move_rcr" model="base.import.pdf.template">
+        <field name="name">Facturas de compra RCR</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(SUPERCONTABLE.COM)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record id="account_move_rcr_line_partner_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_rcr" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record id="account_move_rcr_line_move_type" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_rcr" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_rcr_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_rcr" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura\n(.*) [0-9]{2}</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_rcr_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_rcr" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Factura\n.* ([0-9]{2}\/[0-9]{2}\/[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record id="account_move_rcr_line_product_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_rcr" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(SUPERCONTABLE.COM)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record id="account_move_rcr_line_price_unit" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_rcr" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">^([0-9]{1,3}.[0-9]{2}) [0-9]{1,3}.[0-9]{2}</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">dot</field>
+    </record>
+    <record
+        id="account_move_rcr_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_rcr" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Silcar !-->
+    <record id="account_move_silcar" model="base.import.pdf.template">
+        <field name="name">Facturas de compra SILCAR</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(SILCAR MENSAJEROS, S.L.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_silcar_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_silcar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_silcar_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_silcar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_silcar_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_silcar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">[0-9]{2}\/[0-9]{2}\/[0-9]{4}\n(.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_silcar_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_silcar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">([0-9]{2}\/[0-9]{2}\/[0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_silcar_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_silcar" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(SILCAR MENSAJEROS, S.L.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_silcar_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_silcar" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Subtotal: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_silcar_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_silcar" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- Stripe !-->
+    <record id="account_move_stripe" model="base.import.pdf.template">
+        <field name="name">Facturas de compra STRIPE</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Stripe Payments Europe, Limited\n)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_stripe_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_stripe" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_stripe_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_stripe" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_stripe_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_stripe" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Invoice Number\n(.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_stripe_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_stripe" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Invoice Date\n(.*\n.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*b-short *d, *Y</field>
+    </record>
+    <record
+        id="account_move_stripe_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_stripe" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Stripe Payments Europe, Limited\n)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_stripe_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_stripe" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Stripe Fees\n€(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">dot</field>
+    </record>
+    <record
+        id="account_move_stripe_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_stripe" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- ALHAMBRA !-->
+    <record id="account_move_alhambra" model="base.import.pdf.template">
+        <field name="name">Facturas de compra ALHAMBRA</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Alhambra Systems S.A)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_alhambra_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_alhambra" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_alhambra_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_alhambra" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_alhambra_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_alhambra" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">(.*)\nNº DOCUMENTO</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_alhambra_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_alhambra" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Nº DOCUMENTO\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*y-short</field>
+    </record>
+    <record
+        id="account_move_alhambra_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_alhambra" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(BLEGAL)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_alhambra_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_alhambra" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">([0-9]{1,4},[0-9]{2}) €\n[0-9]{2}%</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_alhambra_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_alhambra" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- AMAZON EU -->
+    <record id="account_move_amazon" model="base.import.pdf.template">
+        <field name="name">Facturas de compra AMAZON EU</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(amazon.es)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_amazon_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_amazon" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_amazon_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_amazon" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_amazon_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_amazon" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Número de la factura (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_amazon_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_amazon" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha de la entrega (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d *B *Y</field>
+    </record>
+    <record
+        id="account_move_amazon_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_amazon" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(amazon.es)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_amazon_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_amazon" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Total ([0-9]{1,4},[0-9]{2}) €.*\nTotal</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_amazon_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_amazon" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- AQUASERVICE !-->
+    <record id="account_move_aquaservice" model="base.import.pdf.template">
+        <field name="name">Facturas de compra AQUASERVICE</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(AQUA SERVICE SPAIN, S.A)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_aquaservice_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aquaservice" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_aquaservice_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aquaservice" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_aquaservice_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aquaservice" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">C.I.F:\n(.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_aquaservice_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aquaservice" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">C.I.F:\n.*\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_aquaservice_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aquaservice" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(AQUA SERVICE SPAIN, S.A)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_aquaservice_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aquaservice" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field
+            name="pattern"
+        >[0-9]{1,4},[0-9]{2} €[0-9]{1,4},[0-9]{2} €([0-9]{1,4},[0-9]{2}) €\nProtecci</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_aquaservice_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_aquaservice" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- BNP PARIBAS -->
+    <record id="account_move_bnp" model="base.import.pdf.template">
+        <field name="name">Facturas de compra BNP PARIBAS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(justifique.\nBNP PARIBAS)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record id="account_move_bnp_line_partner_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_bnp" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record id="account_move_bnp_line_move_type" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_bnp" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_bnp_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_bnp" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura ([A-Z-0-9]{8})</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_bnp_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_bnp" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha de pago : (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record id="account_move_bnp_line_product_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_bnp" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(justifique.\nBNP PARIBAS)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record id="account_move_bnp_line_price_unit" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_bnp" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">sobre la base de (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_bnp_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_bnp" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- CATASUS !-->
+    <record id="account_move_catasus" model="base.import.pdf.template">
+        <field name="name">Facturas de compra BNP CATASUS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Catasús y compañía, S.A.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_catasus_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_catasus" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_catasus_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_catasus" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_catasus_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_catasus" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">FECHA\n.*\n(.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_catasus_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_catasus" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">FECHA\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*y-short</field>
+    </record>
+    <record
+        id="account_move_catasus_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_catasus" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Catasús y compañía, S.A.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_catasus_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_catasus" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">TOTAL IMP.\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_catasus_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_catasus" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- CRONUTS !-->
+    <record id="account_move_cronuts" model="base.import.pdf.template">
+        <field name="name">Facturas de compra BNP CRONUTS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Cronuts Digital)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_cronuts_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cronuts" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_cronuts_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cronuts" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_cronuts_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_cronuts" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">FACTURA\n(F.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_cronuts_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cronuts" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha\n(.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_cronuts_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cronuts" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Cronuts Digital)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_cronuts_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cronuts" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">([0-9]{1,5},[0-9]{2})€ IVA</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_cronuts_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_cronuts" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- GOOGLE ADS!-->
+    <record id="account_move_google_ads" model="base.import.pdf.template">
+        <field name="name">Facturas de compra GOOGLE ADS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Google Ireland Limited)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_google_ads_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google_ads" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_google_ads_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google_ads" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_google_ads_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_google_ads" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Número de factura: (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_google_ads_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google_ads" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">factura:.*\n.*\n.*([0-9]{2} .*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d *b-short *Y</field>
+    </record>
+    <record
+        id="account_move_google_ads_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google_ads" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Google Ireland Limited)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_google_ads_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google_ads" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Total en EUR\n([0-9]{1,4},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_google_ads_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_google_ads" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- HETZNER !-->
+    <record id="account_move_hetzner" model="base.import.pdf.template">
+        <field name="name">Facturas de compra HETZNER</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Hetzner Online GmbH.*Germany)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_hetzner_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_hetzner" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_hetzner_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_hetzner" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_hetzner_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_hetzner" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Invoice no.: (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_hetzner_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_hetzner" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Invoice date: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_hetzner_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_hetzner" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Hetzner Online GmbH.*Germany)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_hetzner_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_hetzner" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">VAT[)] € (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_hetzner_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_hetzner" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- JULIA FARGAS !-->
+    <record id="account_move_julia_fargas" model="base.import.pdf.template">
+        <field name="name">Facturas de compra JULIA FARGAS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field
+            name="auto_detect_pattern"
+        >(Vencimiento.*\nJULIA ELENA FARGAS ESTEVE)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_julia_fargas_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_julia_fargas" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_julia_fargas_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_julia_fargas" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_julia_fargas_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_julia_fargas" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura nº (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_julia_fargas_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_julia_fargas" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Emitida (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_julia_fargas_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_julia_fargas" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(JULIA ELENA FARGAS)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_julia_fargas_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_julia_fargas" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Base exenta\n(.*) €</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+        <field name="thousand_separator">dot</field>
+    </record>
+    <record
+        id="account_move_julia_fargas_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_julia_fargas" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- LIMPIEZAS NOEMI !-->
+    <record id="account_move_limpiezas_noemi" model="base.import.pdf.template">
+        <field name="name">Facturas de compra LIMPIEZAS NOEMI</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Mantenimiento de limpieza)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_limpiezas_noemi_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_limpiezas_noemi" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_limpiezas_noemi_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_limpiezas_noemi" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_limpiezas_noemi_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_limpiezas_noemi" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">OFICINA([0-9]*)Desc</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_limpiezas_noemi_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_limpiezas_noemi" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">PROVEEDOR([0-9]{1,2} de [a-z]* de [0-9]{4})</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d *B *Y</field>
+    </record>
+    <record
+        id="account_move_limpiezas_noemi_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_limpiezas_noemi" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Mantenimiento de limpieza)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_limpiezas_noemi_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_limpiezas_noemi" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">([0-9,]*)FORMA</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_limpiezas_noemi_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_limpiezas_noemi" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- MARIANA CAMPOS !-->
+    <record id="account_move_mariana_campos" model="base.import.pdf.template">
+        <field name="name">Facturas de compra MARIANA CAMPO</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(CAMPOS CANSECO, MARIANA)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_mariana_campos_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_mariana_campos" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_mariana_campos_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_mariana_campos" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_mariana_campos_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_mariana_campos" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura nº (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_mariana_campos_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_mariana_campos" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Emitida (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_mariana_campos_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_mariana_campos" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(CAMPOS CANSECO, MARIANA)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_mariana_campos_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_mariana_campos" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Base imponible\n(.*) €</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+        <field name="thousand_separator">dot</field>
+    </record>
+    <record
+        id="account_move_mariana_campos_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_mariana_campos" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- METODO CONSOLIDA !-->
+    <record id="account_move_metodo_consolida" model="base.import.pdf.template">
+        <field name="name">Facturas de compra METODO CONSOLIDA</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(METODO CONSOLIDA S.L.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_metodo_consolida_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_metodo_consolida" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_metodo_consolida_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_metodo_consolida" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_metodo_consolida_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_metodo_consolida" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">FACTURA (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_metodo_consolida_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_metodo_consolida" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_metodo_consolida_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_metodo_consolida" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(METODO CONSOLIDA S.L.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_metodo_consolida_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_metodo_consolida" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">BASE IMPONIBLE (.*)€</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_metodo_consolida_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_metodo_consolida" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- NINITE !-->
+    <record id="account_move_ninite" model="base.import.pdf.template">
+        <field name="name">Facturas de compra NINITE</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(ninite-invoices)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_ninite_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ninite" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_ninite_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ninite" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_ninite_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_ninite" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Invoice Number: (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_ninite_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ninite" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Date: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d *B *Y</field>
+    </record>
+    <record
+        id="account_move_ninite_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ninite" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(ninite-invoices)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_ninite_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ninite" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">T otal [$](.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">dot</field>
+    </record>
+    <record
+        id="account_move_ninite_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_ninite" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- OPCION ENERGIA !-->
+    <record id="account_move_opcion_energia" model="base.import.pdf.template">
+        <field name="name">Facturas de compra OPCION ENERGIA</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">^(ENERGY STROM XXI, S.L. CIF)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_opcion_energia_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_opcion_energia" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_opcion_energia_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_opcion_energia" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_opcion_energia_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_opcion_energia" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Nº de factura: (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_opcion_energia_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_opcion_energia" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha de emisión: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_opcion_energia_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_opcion_energia" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">^(ENERGY STROM XXI, S.L. CIF)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_opcion_energia_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_opcion_energia" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Subtotal (.*) [(€]</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_opcion_energia_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_opcion_energia" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- REVIVE FORESTAL !-->
+    <record id="account_move_revive_forestal" model="base.import.pdf.template">
+        <field name="name">Facturas de compra REVIVE FORESTAL</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(REVIVE FORESTAL, S.L.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_revive_forestal_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_revive_forestal" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_revive_forestal_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_revive_forestal" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_revive_forestal_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_revive_forestal" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Factura nº (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_revive_forestal_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_revive_forestal" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Emitida (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_revive_forestal_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_revive_forestal" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(REVIVE FORESTAL, S.L.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_revive_forestal_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_revive_forestal" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Base imponible\n(.*) €</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_revive_forestal_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_revive_forestal" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- TECNOLOGÍA FAMILIAR !-->
+    <record id="account_move_tecnologia_familiar" model="base.import.pdf.template">
+        <field name="name">Facturas de compra TECNOLOGÍA FAMILIAR</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(TECNOLOGIA FAMILIAR SL)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_tecnologia_familiar_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tecnologia_familiar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_tecnologia_familiar_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tecnologia_familiar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record
+        id="account_move_tecnologia_familiar_line_ref"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tecnologia_familiar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">FACTURA #(.*) Fecha</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_tecnologia_familiar_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tecnologia_familiar" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record
+        id="account_move_tecnologia_familiar_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tecnologia_familiar" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(TECNOLOGIA FAMILIAR SL)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_tecnologia_familiar_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tecnologia_familiar" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">BASE IMPONIBLE (.*)€</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_tecnologia_familiar_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tecnologia_familiar" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+    <!-- TUXIS !-->
+    <record id="account_move_tuxis" model="base.import.pdf.template">
+        <field name="name">Facturas de compra TUXIS</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(Tuxis B.V.)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record
+        id="account_move_tuxis_line_partner_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tuxis" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record
+        id="account_move_tuxis_line_move_type"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tuxis" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_tuxis_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_tuxis" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Invoice nr.: (.*)</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_tuxis_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tuxis" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Invoice date: (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d-*m-*Y</field>
+    </record>
+    <record
+        id="account_move_tuxis_line_product_id"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tuxis" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(Tuxis B.V.)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record
+        id="account_move_tuxis_line_price_unit"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tuxis" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Total ex. VAT € (.*)</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_tuxis_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_tuxis" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
+</odoo>

@@ -6,22 +6,20 @@
     "author": "Tecnativa",
     "category": "Accounting/Accounting",
     "website": "https://www.tecnativa.com",
-    "depends": ["account", "base_import_pdf_by_template_account"],
+    "depends": [
+        "account",
+        "account_payment_term_extension",
+        "base_import_pdf_by_template_account",
+    ],
     "data": [
         "data/account_payment_data.xml",
+        "data/base_import_pdf_template_data.xml",
         # "data/product_attribute_data.xml",
         # "report/report_deliveryslip.xml",
         # "report/report_purchaseorder.xml",
         # "report/report_sale_order.xml",
         "views/account_move_views.xml",
         "views/res_partner_views.xml",
-    ],
-    "demo": [
-        "demo/demo_aws.xml",
-        "demo/demo_creinsa.xml",
-        "demo/demo_google.xml",
-        "demo/demo_ionos.xml",
-        "demo/demo_ovh.xml",
     ],
     "license": "AGPL-3",
 }
