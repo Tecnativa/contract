@@ -3443,6 +3443,82 @@
         <field name="column">2</field>
         <field name="value_type">fixed</field>
     </record>
+    <!-- HGM !-->
+    <record id="account_move_hgm" model="base.import.pdf.template">
+        <field name="name">Facturas de compra HGM</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field
+            name="child_field_id"
+            ref="account.field_account_move__invoice_line_ids"
+        />
+        <field name="auto_detect_pattern">(HGM Network, S.L)</field>
+        <field name="header_items">Producto,Precio,AnalyticDistribution</field>
+    </record>
+    <record id="account_move_hgm_line_partner_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_hgm" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__partner_id" />
+        <field name="value_type">fixed</field>
+    </record>
+    <record id="account_move_hgm_line_move_type" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_hgm" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__move_type" />
+        <field name="value_type">fixed</field>
+        <field
+            name="fixed_value_selection"
+            ref="account.selection__account_invoice_report__move_type__in_invoice"
+        />
+    </record>
+    <record id="account_move_hgm_line_ref" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_hgm" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__ref" />
+        <field name="pattern">Número: Factura (.*) \n</field>
+        <field name="value_type">variable</field>
+    </record>
+    <record
+        id="account_move_hgm_line_invoice_date"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_hgm" />
+        <field name="related_model">header</field>
+        <field name="field_id" ref="account.field_account_move__invoice_date" />
+        <field name="pattern">Fecha de (.*) \n</field>
+        <field name="value_type">variable</field>
+        <field name="date_format">*d/*m/*Y</field>
+    </record>
+    <record id="account_move_hgm_line_product_id" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_hgm" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__product_id" />
+        <field name="column">0</field>
+        <field name="pattern">(HGM Network, S.L)</field>
+        <field name="value_type">variable</field>
+        <field name="search_field_id" ref="product.field_product_product__name" />
+    </record>
+    <record id="account_move_hgm_line_price_unit" model="base.import.pdf.template.line">
+        <field name="template_id" ref="account_move_hgm" />
+        <field name="related_model">lines</field>
+        <field name="field_id" ref="account.field_account_move_line__price_unit" />
+        <field name="column">1</field>
+        <field name="pattern">Subtotal ([0-9]{1,4},[0-9]{2})</field>
+        <field name="value_type">variable</field>
+        <field name="decimal_separator">comma</field>
+    </record>
+    <record
+        id="account_move_hgm_line_analytic_distribution"
+        model="base.import.pdf.template.line"
+    >
+        <field name="template_id" ref="account_move_hgm" />
+        <field name="related_model">lines</field>
+        <field
+            name="field_id"
+            ref="account.field_account_move_line__analytic_distribution"
+        />
+        <field name="column">2</field>
+        <field name="value_type">fixed</field>
+    </record>
     <!-- JULIA FARGAS !-->
     <record id="account_move_julia_fargas" model="base.import.pdf.template">
         <field name="name">Facturas de compra JULIA FARGAS</field>
