@@ -26,6 +26,16 @@ edi:
     - origin $ODOO_VERSION
     - origin refs/pull/1056/head # base_import_pdf_by_template_account
 
+project:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/project.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/1388/head # sale_project_reimbursement_cost
+
 server-backend:
   defaults:
     depth: $DEPTH_MERGE
