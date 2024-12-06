@@ -71,6 +71,7 @@ partner-contact:
 project:
   - project_task_default_stage
   - sale_project_task_recurrency
+  - sale_project_reimbursement_cost
 reporting-engine:
   - report_xlsx
   - report_xlsx_helper

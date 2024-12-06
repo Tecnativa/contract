@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <record id="account_move_inherit" model="ir.ui.view">
+        <field name="name">account.move.view.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field
+                    name="is_portal_published"
+                    invisible="move_type != 'in_invoice'"
+                    readonly="state != 'draft'"
+                    groups="analytic.group_analytic_accounting"
+                />
+            </xpath>
+        </field>
+    </record>
     <record
         id="action_base_import_pdf_by_template_account_invoice_reprocess"
         model="ir.actions.server"
