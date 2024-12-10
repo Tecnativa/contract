@@ -10,6 +10,7 @@
         "account",
         "account_payment_term_extension",
         "base_import_pdf_by_template_account",
+        "sale",
     ],
     "data": [
         "data/account_payment_data.xml",
@@ -20,6 +21,7 @@
         # "report/report_sale_order.xml",
         "views/account_move_views.xml",
         "views/res_partner_views.xml",
+        "views/sale_order_views.xml",
     ],
     "license": "AGPL-3",
 }

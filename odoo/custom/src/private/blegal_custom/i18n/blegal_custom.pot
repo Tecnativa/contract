@@ -283,6 +283,12 @@ msgid "Registration Date"
 msgstr ""
 
 #. module: blegal_custom
+#: model:ir.actions.act_window,name:blegal_custom.sale_order_line_action
+#: model_terms:ir.ui.view,arch_db:blegal_custom.view_sale_order_form
+msgid "Sales items"
+msgstr ""
+
+#. module: blegal_custom
 #. odoo-python
 #: code:addons/blegal_custom/models/account_move.py:0
 #, python-format
