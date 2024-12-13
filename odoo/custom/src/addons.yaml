@@ -70,6 +70,7 @@ partner-contact:
   - base_location_geonames_import
 project:
   - project_task_default_stage
+  - project_task_stage_state
   - sale_project_task_recurrency
   - sale_project_reimbursement_cost
 reporting-engine:
