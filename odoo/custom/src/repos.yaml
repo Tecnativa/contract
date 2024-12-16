@@ -35,6 +35,7 @@ project:
   merges:
     - origin $ODOO_VERSION
     - origin refs/pull/1388/head # sale_project_reimbursement_cost
+    - origin refs/pull/1394/head # sale_project_task_recurrency, force a specific month
 
 server-backend:
   defaults:
