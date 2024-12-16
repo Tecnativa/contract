@@ -284,6 +284,10 @@ msgstr ""
 
 #. module: blegal_custom
 #: model:ir.actions.act_window,name:blegal_custom.sale_order_line_action
+msgid "Sale detail"
+msgstr ""
+
+#. module: blegal_custom
 #: model_terms:ir.ui.view,arch_db:blegal_custom.view_sale_order_form
 msgid "Sales items"
 msgstr ""
