@@ -101,6 +101,20 @@
                                     string="Update mandate company"
                                     class="btn btn-info"
                                 />
+                                <div>Import sale order from contract</div>
+                                <button
+                                    name="action_import_sale_order_from_contract_a3"
+                                    type="object"
+                                    string="Sale order"
+                                    class="btn btn-info"
+                                />
+                                <div>Import sale order line from contract lines</div>
+                                <button
+                                    name="action_import_sale_order_line_from_cuotas_a3"
+                                    type="object"
+                                    string="Sale order line"
+                                    class="btn btn-info"
+                                />
                             </group>
                         </group>
                     </page>

@@ -5,6 +5,7 @@ import logging
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
+from odoo.tests import Form
 from odoo.tools import ormcache
 from odoo.tools.mail import plaintext2html
 
@@ -1030,6 +1031,135 @@ class BaseExternalDbsourceBOne(models.Model):
                     f"to: {contract[:1].company_id.name}"
                 )
                 mandate.sudo().company_id = contract[:1].company_id
+
+    def _prepare_sale_order_a3(self, row):
+        company_id = self.get_company_odoo_company_id(row.COD_EMPRESA)
+        company = self.env["res.company"].browse(company_id)
+        partner_id = self.importer.get_m2_odoo_id("res.partner", f"{row.COD_CLIENTE}")
+        partner = self.env["res.partner"].with_company(company).browse(partner_id)
+        fiscal_position = partner.env["account.fiscal.position"]._get_fiscal_position(
+            partner
+        )
+        vals = {
+            "a3_key": f"{int(row.COD_EXPEDIENTE)}",
+            "company_id": company_id,
+            "analytic_account_id": self.with_company(company).importer.get_m2_odoo_id(
+                "account.analytic.account", f"{int(row.COD_EXPEDIENTE)}"
+            ),
+            "partner_id": partner_id,
+            "date_order": row.FECHA_APERTURA,
+            "pricelist_id": partner.property_product_pricelist.id,
+            "fiscal_position_id": fiscal_position.id,
+            "payment_term_id": partner.property_payment_term_id.id,
+            "origin": row.CLAVE_EXPEDIENTE.strip(),
+            # "tag_ids": [(6, 0, [])]
+        }
+        return vals
+
+    def action_import_sale_order_from_contract_a3(self):
+        fields_sql = """
+            COD_EMPRESA, COD_EXPEDIENTE, COD_CLIENTE, EJERCICIO, CLAVE_EXPEDIENTE,
+            TITULO, TIPO, COD_RESPONSABLE, COD_COMERCIAL, FECHA_APERTURA, FECHA_CIERRE
+        """
+        table = """
+            dbo.GES_EXPEDIENTES c
+        """
+        where = """
+            WHERE COD_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
+                AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
+                AND COD_EXPEDIENTE IN (SELECT EXPEDIENTE from GES_CUOTAS)
+                --AND CLAVE_EXPEDIENTE = 'C/000063'
+                --AND c.COD_EMPRESA = 'G01'
+                --AND c.COD_EXPEDIENTE = 3928
+                --AND c.COD_EXPEDIENTE = 3911
+                --AND c.COD_EXPEDIENTE = 32
+        """
+        ext_records, records, records_dic = self.sudo().importer.load_data(
+            "sale.order", table, fields=fields_sql, where=where
+        )
+
+        for ext_rec in ext_records:
+            _logger.info(f"Importing sale order values: {int(ext_rec.COD_EXPEDIENTE)}")
+            vals = self._prepare_sale_order_a3(ext_rec)
+            self.sudo().importer.upsert(vals["a3_key"], records, records_dic, vals)
+
+    def _prepare_sale_order_line_a3(self, row):
+        company_id = self.get_company_odoo_company_id(row.COD_EMPRESA)
+        company = self.env["res.company"].browse(company_id)
+        product_id = self.importer.get_m2_odoo_id(
+            "product.product", f"{row.COD_CONCEPTO_FACT.strip()}"
+        )
+        product = self.env["product.product"].with_company(company).browse(product_id)
+        contract_id = self.with_company(company).importer.get_m2_odoo_id(
+            "contract.contract", f"{int(row.EXPEDIENTE)}"
+        )
+        contract_line_id = self.with_company(company).importer.get_m2_odoo_id(
+            "contract.line", f"{int(row.EXPEDIENTE)}-{int(row.NUMERO_ORDEN)}"
+        )
+        sale_order_id = self.with_company(company).importer.get_m2_odoo_id(
+            "sale.order", f"{int(row.EXPEDIENTE)}"
+        )
+        sale_order = self.env["sale.order"].with_company(company).browse(sale_order_id)
+        order_form = Form(sale_order)
+        with order_form.order_line.new() as sol_form:
+            sol_form.product_id = product
+            vals = sol_form._get_all_values()
+        vals.update(
+            {
+                "a3_key": f"{int(row.EXPEDIENTE)}-{int(row.NUMERO_ORDEN)}",
+                "order_id": sale_order_id,
+                "contract_id": contract_id,
+                "contract_line_id": contract_line_id,
+            }
+        )
+        # Assign analytic distribution
+        # distribution_model.analytic_distribution = {f"{test_account.id}": 100}
+        analytic_account_id = self.with_company(company).importer.get_m2_odoo_id(
+            "account.analytic.account", f"{int(row.EXPEDIENTE)}"
+        )
+        if analytic_account_id:
+            vals["analytic_distribution"] = {f"{analytic_account_id}": 100}
+        return vals
+
+    def action_import_sale_order_line_from_cuotas_a3(self):
+        fields_sql = """
+            EXPEDIENTE, COD_CONCEPTO_FACT, DESCRIPCION, CODIGO_CLIENTE, IMPORTE,
+            PERIODO, FECHA_PROX_GENERACION, FECHA_FIN_GENERACION, UNIDADES,
+            COD_EMPRESA, NUMERO_ORDEN,
+            (SELECT TOP 1 con.FECHA_FACTURA
+            	FROM GES_CONCEPTOS con
+            	WHERE con.EXPEDIENTE = c.EXPEDIENTE
+            	    and con.CODIGO = c.COD_CONCEPTO_FACT
+            	    and ES_CUOTA = 'S'
+            	ORDER BY con.FECHA_FACTURA DESC
+            	) AS ULTIMA_FECHA_FACTURA
+        """
+        table = """
+            dbo.GES_CUOTAS c
+        """
+        where = """
+            WHERE c.CODIGO_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
+                --AND c.COD_EMPRESA = 'G01'
+                AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
+                AND c.COD_CONCEPTO_FACT NOT IN ('CTABL', 'CTABGL', 'CTASUP', 'CTAACM')
+                --AND c.EXPEDIENTE = 1359
+                --AND c.EXPEDIENTE = 32
+                --AND c.COD_CONCEPTO_FACT='CUOFIS'
+                --AND c.CODIGO_CLIENTE = 'G00810'
+                --AND c.CODIGO_CLIENTE = 'G00818'
+            ORDER BY c.COD_EMPRESA, c.EXPEDIENTE, c.NUMERO_ORDEN
+        """
+        ext_records, records, records_dic = self.sudo().importer.load_data(
+            "sale.order.line", table, fields=fields_sql, where=where
+        )
+
+        for ext_rec in ext_records:
+            _logger.info(
+                f"Importing sale order line from Expediente: {int(ext_rec.EXPEDIENTE)} "
+                f"Linea: {int(ext_rec.NUMERO_ORDEN)}"
+            )
+            vals = self._prepare_sale_order_line_a3(ext_rec)
+            self.sudo().importer.upsert(vals["a3_key"], records, records_dic, vals)
 
     @api.model
     @ormcache("pay_term")

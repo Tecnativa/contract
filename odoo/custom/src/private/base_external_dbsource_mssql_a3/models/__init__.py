@@ -10,3 +10,4 @@ from . import account_payment_mode
 from . import res_partner
 from . import res_users
 from . import product
+from . import sale_order
