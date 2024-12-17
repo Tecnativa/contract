@@ -1,5 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from . import a3_mixin
+from . import account_analytic_account
 from . import account_banking_mandate
 from . import account_payment_term
 from . import base_external_dbsource

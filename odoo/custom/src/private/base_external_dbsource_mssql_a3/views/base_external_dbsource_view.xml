@@ -73,6 +73,13 @@
                                 />
                             </group>
                             <group string="Contracts">
+                                <div>Import Analytic Accounts</div>
+                                <button
+                                    name="action_import_analytic_account_a3"
+                                    type="object"
+                                    string="Analytic Accounts"
+                                    class="btn btn-info"
+                                />
                                 <div>Import Contracts</div>
                                 <button
                                     name="action_import_contract_a3"

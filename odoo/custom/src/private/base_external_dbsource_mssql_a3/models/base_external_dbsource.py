@@ -796,6 +796,48 @@ class BaseExternalDbsourceBOne(models.Model):
                 vals = self._prepare_partner_bank_mandate(ext_rec, bank_account)
                 self.importer.upsert(vals["a3_key"], records, records_dic, vals)
 
+    def _prepare_analytic_account_a3(self, row):
+        company_id = self.get_company_odoo_company_id(row.COD_EMPRESA)
+        partner_id = self.importer.get_m2_odoo_id("res.partner", f"{row.COD_CLIENTE}")
+        vals = {
+            "a3_key": f"{int(row.COD_EXPEDIENTE)}",
+            "company_id": company_id,
+            "code": row.CLAVE_EXPEDIENTE.strip(),
+            "name": row.TITULO.strip(),
+            "partner_id": partner_id,
+            "plan_id": self.env.ref("analytic.analytic_plan_projects").id,
+        }
+        return vals
+
+    def action_import_analytic_account_a3(self):
+        fields_sql = """
+            COD_EMPRESA, COD_EXPEDIENTE, COD_CLIENTE, EJERCICIO, CLAVE_EXPEDIENTE,
+            TITULO, TIPO, COD_RESPONSABLE, COD_COMERCIAL, FECHA_APERTURA, FECHA_CIERRE
+        """
+        table = """
+            dbo.GES_EXPEDIENTES c
+        """
+        where = """
+            WHERE COD_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
+                AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
+                AND COD_EXPEDIENTE IN (SELECT EXPEDIENTE from GES_CUOTAS)
+                --AND CLAVE_EXPEDIENTE = 'C/000063'
+                --AND c.COD_EMPRESA = 'G01'
+                --AND c.COD_EXPEDIENTE = 3928
+                --AND c.COD_EXPEDIENTE = 3911
+                --AND c.COD_EXPEDIENTE = 32
+        """
+        ext_records, records, records_dic = self.sudo().importer.load_data(
+            "account.analytic.account", table, fields=fields_sql, where=where
+        )
+
+        for ext_rec in ext_records:
+            _logger.info(
+                f"Importing analytic account values: {int(ext_rec.COD_EXPEDIENTE)}"
+            )
+            vals = self._prepare_analytic_account_a3(ext_rec)
+            self.sudo().importer.upsert(vals["a3_key"], records, records_dic, vals)
+
     def _prepare_contract_a3(self, row):
         company_id = self.get_company_odoo_company_id(row.COD_EMPRESA)
         company = self.env["res.company"].browse(company_id)
@@ -832,7 +874,7 @@ class BaseExternalDbsourceBOne(models.Model):
             WHERE COD_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
                 AND COD_EXPEDIENTE IN (SELECT EXPEDIENTE from GES_CUOTAS)
-                --AND CLAVE_EXPEDIENTE = 'C/001359'
+                --AND CLAVE_EXPEDIENTE = 'C/000063'
                 --AND c.COD_EMPRESA = 'G01'
                 --AND c.COD_EXPEDIENTE = 3928
                 --AND c.COD_EXPEDIENTE = 3911
@@ -915,6 +957,13 @@ class BaseExternalDbsourceBOne(models.Model):
             and vals["last_date_invoiced"] > vals["date_end"]
         ):
             vals["date_end"] = vals["last_date_invoiced"]
+        # Assign analytic distribution
+        # distribution_model.analytic_distribution = {f"{test_account.id}": 100}
+        analytic_account_id = self.with_company(company).importer.get_m2_odoo_id(
+            "account.analytic.account", f"{int(row.EXPEDIENTE)}"
+        )
+        if analytic_account_id:
+            vals["analytic_distribution"] = {f"{analytic_account_id}": 100}
         return vals
 
     def action_import_contract_line_a3(self):
@@ -959,8 +1008,10 @@ class BaseExternalDbsourceBOne(models.Model):
                 vals["a3_key"], records, records_dic, vals
             )
             if contract_line.date_end:
-                contract_line.stop(date_end=contract_line.date_end)
-                contract_line.is_canceled = True
+                if contract_line.is_stop_allowed:
+                    contract_line.stop(date_end=contract_line.date_end)
+                if not contract_line.is_canceled:
+                    contract_line.is_canceled = True
 
     def action_update_mandate_company_from_contract(self):
         mandates = self.env["account.banking.mandate"].sudo().search([])
