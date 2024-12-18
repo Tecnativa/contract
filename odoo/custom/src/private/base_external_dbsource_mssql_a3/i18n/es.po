@@ -79,6 +79,11 @@ msgid "Categories"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Confirm Sale orders"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
 #: model:ir.model,name:base_external_dbsource_mssql_a3.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -306,6 +311,11 @@ msgstr ""
 #. module: base_external_dbsource_mssql_a3
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
 msgid "Users"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Validate Sale Orders"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
