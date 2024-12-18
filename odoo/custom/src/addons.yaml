@@ -87,6 +87,8 @@ server-brand:
 server-ux:
   - base_technical_features
   - date_range
+social:
+  - mail_notification_custom_subject
 web:
   - web_environment_ribbon
   - web_favicon
