@@ -1068,6 +1068,7 @@ class BaseExternalDbsourceBOne(models.Model):
             WHERE COD_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
                 AND COD_EXPEDIENTE IN (SELECT EXPEDIENTE from GES_CUOTAS)
+                AND c.COD_EXPEDIENTE >= 101 AND c.COD_EXPEDIENTE < 110
                 --AND CLAVE_EXPEDIENTE = 'C/000063'
                 --AND c.COD_EMPRESA = 'G01'
                 --AND c.COD_EXPEDIENTE = 3928
@@ -1096,22 +1097,19 @@ class BaseExternalDbsourceBOne(models.Model):
         contract_line_id = self.with_company(company).importer.get_m2_odoo_id(
             "contract.line", f"{int(row.EXPEDIENTE)}-{int(row.NUMERO_ORDEN)}"
         )
+        contract_line = (
+            self.env["contract.line"].with_company(company).browse(contract_line_id)
+        )
         sale_order_id = self.with_company(company).importer.get_m2_odoo_id(
             "sale.order", f"{int(row.EXPEDIENTE)}"
         )
         sale_order = self.env["sale.order"].with_company(company).browse(sale_order_id)
-        order_form = Form(sale_order)
+        order_form = Form(sale_order.with_context(tracking_disable=True))
         with order_form.order_line.new() as sol_form:
             sol_form.product_id = product
+            sol_form.product_uom_qty = row.UNIDADES
+            sol_form.price_unit = row.IMPORTE
             vals = sol_form._get_all_values()
-        vals.update(
-            {
-                "a3_key": f"{int(row.EXPEDIENTE)}-{int(row.NUMERO_ORDEN)}",
-                "order_id": sale_order_id,
-                "contract_id": contract_id,
-                "contract_line_id": contract_line_id,
-            }
-        )
         # Assign analytic distribution
         # distribution_model.analytic_distribution = {f"{test_account.id}": 100}
         analytic_account_id = self.with_company(company).importer.get_m2_odoo_id(
@@ -1119,6 +1117,18 @@ class BaseExternalDbsourceBOne(models.Model):
         )
         if analytic_account_id:
             vals["analytic_distribution"] = {f"{analytic_account_id}": 100}
+        vals.update(
+            {
+                "a3_key": f"{int(row.EXPEDIENTE)}-{int(row.NUMERO_ORDEN)}",
+                "order_id": sale_order_id,
+                "contract_id": contract_id,
+                "contract_line_id": contract_line_id,
+                "name": contract_line.name,
+                "recurring_rule_type": contract_line.recurring_rule_type,
+                "date_start": contract_line.date_start,
+                "date_end": contract_line.date_end,
+            }
+        )
         return vals
 
     def action_import_sale_order_line_from_cuotas_a3(self):
@@ -1142,7 +1152,7 @@ class BaseExternalDbsourceBOne(models.Model):
                 --AND c.COD_EMPRESA = 'G01'
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
                 AND c.COD_CONCEPTO_FACT NOT IN ('CTABL', 'CTABGL', 'CTASUP', 'CTAACM')
-                --AND c.EXPEDIENTE = 1359
+                AND c.EXPEDIENTE >= 101 AND c.EXPEDIENTE < 110
                 --AND c.EXPEDIENTE = 32
                 --AND c.COD_CONCEPTO_FACT='CUOFIS'
                 --AND c.CODIGO_CLIENTE = 'G00810'
@@ -1159,7 +1169,33 @@ class BaseExternalDbsourceBOne(models.Model):
                 f"Linea: {int(ext_rec.NUMERO_ORDEN)}"
             )
             vals = self._prepare_sale_order_line_a3(ext_rec)
-            self.sudo().importer.upsert(vals["a3_key"], records, records_dic, vals)
+            sale_line = (
+                self.sudo()
+                .with_context(tracking_disable=True)
+                .importer.upsert(vals["a3_key"], records, records_dic, vals)
+            )
+            # Update contract line with new sol created
+            self.env["contract.line"].sudo().browse(
+                vals["contract_line_id"]
+            ).sale_order_line_id = sale_line.id
+
+    def action_validate_sale_order_a3(self):
+        # Disable contract creation to validate all sale orders created from contracts
+        companies = self.env["res.company"].sudo().search([])
+        companies.create_contract_at_sale_order_confirmation = False
+
+        sale_orders = (
+            self.env["sale.order"]
+            .sudo()
+            .search(
+                [
+                    ("a3_key", "!=", False),
+                ]
+            )
+        )
+        sale_orders.with_context(tracking_disable=True).action_confirm()
+        # reactivate contracts
+        companies.create_contract_at_sale_order_confirmation = True
 
     @api.model
     @ormcache("pay_term")

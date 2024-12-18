@@ -115,6 +115,13 @@
                                     string="Sale order line"
                                     class="btn btn-info"
                                 />
+                                <div>Validate Sale Orders</div>
+                                <button
+                                    name="action_validate_sale_order_a3"
+                                    type="object"
+                                    string="Confirm Sale orders"
+                                    class="btn btn-info"
+                                />
                             </group>
                         </group>
                     </page>

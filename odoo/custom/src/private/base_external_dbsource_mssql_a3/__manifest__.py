@@ -24,7 +24,7 @@
         "base_external_dbsource_mssql",
         "blegal_custom",
         "contacts",
-        "contract",
+        "product_contract",
         "account_banking_sepa_direct_debit",
     ],
     "data": [
