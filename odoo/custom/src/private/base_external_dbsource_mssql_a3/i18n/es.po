@@ -28,6 +28,7 @@ msgid "A3 Importer"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_analytic_account__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_banking_mandate__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_payment_mode__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_account_payment_term__a3_key
@@ -42,6 +43,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_bank__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_partner_mapped__a3_key
 #: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_res_users__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_sale_order__a3_key
+#: model:ir.model.fields,field_description:base_external_dbsource_mssql_a3.field_sale_order_line__a3_key
 msgid "A3 Key"
 msgstr ""
 
@@ -53,6 +56,16 @@ msgstr ""
 #. module: base_external_dbsource_mssql_a3
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
 msgid "A3 SQL"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_account_analytic_account
+msgid "Analytic Account"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Analytic Accounts"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
@@ -117,6 +130,11 @@ msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import Analytic Accounts"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
 msgid "Import Categories"
 msgstr ""
 
@@ -173,6 +191,16 @@ msgstr ""
 #. module: base_external_dbsource_mssql_a3
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
 msgid "Import products"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import sale order from contract"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Import sale order line from contract lines"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
@@ -238,6 +266,26 @@ msgstr ""
 #. module: base_external_dbsource_mssql_a3
 #: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
 msgid "Products"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Sale order"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model_terms:ir.ui.view,arch_db:base_external_dbsource_mssql_a3.view_dbsource_form
+msgid "Sale order line"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: base_external_dbsource_mssql_a3
+#: model:ir.model,name:base_external_dbsource_mssql_a3.model_sale_order_line
+msgid "Sales Order Line"
 msgstr ""
 
 #. module: base_external_dbsource_mssql_a3
