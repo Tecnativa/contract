@@ -1068,7 +1068,7 @@ class BaseExternalDbsourceBOne(models.Model):
             WHERE COD_CLIENTE IN (SELECT CODIGO FROM GES_CLIENTES gc)
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
                 AND COD_EXPEDIENTE IN (SELECT EXPEDIENTE from GES_CUOTAS)
-                AND c.COD_EXPEDIENTE >= 101 AND c.COD_EXPEDIENTE < 110
+                --AND c.COD_EXPEDIENTE >= 101 AND c.COD_EXPEDIENTE < 110
                 --AND CLAVE_EXPEDIENTE = 'C/000063'
                 --AND c.COD_EMPRESA = 'G01'
                 --AND c.COD_EXPEDIENTE = 3928
@@ -1152,7 +1152,7 @@ class BaseExternalDbsourceBOne(models.Model):
                 --AND c.COD_EMPRESA = 'G01'
                 AND c.COD_EMPRESA NOT IN ('G03', 'G04', 'G05')
                 AND c.COD_CONCEPTO_FACT NOT IN ('CTABL', 'CTABGL', 'CTASUP', 'CTAACM')
-                AND c.EXPEDIENTE >= 101 AND c.EXPEDIENTE < 110
+                --AND c.EXPEDIENTE >= 101 AND c.EXPEDIENTE < 110
                 --AND c.EXPEDIENTE = 32
                 --AND c.COD_CONCEPTO_FACT='CUOFIS'
                 --AND c.CODIGO_CLIENTE = 'G00810'
