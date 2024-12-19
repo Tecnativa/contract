@@ -1,14 +1,12 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
-import math
-import threading
 
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
 from odoo.tests import Form
-from odoo.tools import config, ormcache
+from odoo.tools import ormcache
 from odoo.tools.mail import plaintext2html
 
 from odoo.addons.base_external_dbsource_importer.models.base_external_dbsource import (
@@ -1168,48 +1166,21 @@ class BaseExternalDbsourceBOne(models.Model):
             "sale.order.line", table, fields=fields_sql, where=where
         )
 
-        max_thread = max(config["workers"] - 2, 1)
-        section_thread = math.ceil(len(ext_records) / max_thread)
-        for t in range(min(section_thread, max_thread)):
-            if t != section_thread - 1:
-                recs_to_process = ext_records.rows[
-                    t * section_thread : (t + 1) * section_thread
-                ]
-            else:
-                recs_to_process = ext_records.rows[t * section_thread :]
-            threaded_calculation = threading.Thread(
-                target=self._import_sale_order_line_threaded_a3,
-                args=(
-                    recs_to_process,
-                    records,
-                    records_dic,
-                ),
+        for ext_rec in ext_records:
+            _logger.info(
+                f"Importing sale order line from Expediente: {int(ext_rec.EXPEDIENTE)} "
+                f"Linea: {int(ext_rec.NUMERO_ORDEN)}"
             )
-            threaded_calculation.start()
-
-    def _import_sale_order_line_threaded_a3(self, ext_records, records, records_dic):
-        with self.pool.cursor() as new_cr:
-            self = self.with_env(self.env(cr=new_cr))
-            records = records.with_env(records.env(cr=new_cr))
-            for ext_rec in ext_records:
-                _logger.info(
-                    f"Thead: {threading.current_thread().name} "
-                    f"Importing sale order line from "
-                    f"Expediente: {int(ext_rec.EXPEDIENTE)} "
-                    f"Linea: {int(ext_rec.NUMERO_ORDEN)}"
-                )
-                vals = self._prepare_sale_order_line_a3(ext_rec)
-                sale_line = (
-                    self.sudo()
-                    .with_context(tracking_disable=True)
-                    .importer.upsert(vals["a3_key"], records, records_dic, vals)
-                )
-                # Update contract line with new sol created
-                self.env["contract.line"].sudo().browse(
-                    vals["contract_line_id"]
-                ).sale_order_line_id = sale_line.id
-            new_cr.commit()
-            new_cr.close()
+            vals = self._prepare_sale_order_line_a3(ext_rec)
+            sale_line = (
+                self.sudo()
+                .with_context(tracking_disable=True)
+                .importer.upsert(vals["a3_key"], records, records_dic, vals)
+            )
+            # Update contract line with new sol created
+            self.env["contract.line"].sudo().browse(
+                vals["contract_line_id"]
+            ).sale_order_line_id = sale_line.id
 
     def action_validate_sale_order_a3(self):
         # Disable contract creation to validate all sale orders created from contracts
