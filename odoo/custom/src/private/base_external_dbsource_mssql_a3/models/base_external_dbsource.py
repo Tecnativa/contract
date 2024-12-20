@@ -1011,7 +1011,7 @@ class BaseExternalDbsourceBOne(models.Model):
             contract_line = self.sudo().importer.upsert(
                 vals["a3_key"], records, records_dic, vals
             )
-            if contract_line.date_end:
+            if contract_line.date_end and contract_line.date_end <= fields.Date.today():
                 if contract_line.is_stop_allowed:
                     contract_line.stop(date_end=contract_line.date_end)
                 if not contract_line.is_canceled:
