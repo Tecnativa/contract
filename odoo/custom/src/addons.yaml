@@ -71,6 +71,7 @@ partner-contact:
 project:
   - project_task_default_stage
   - project_task_stage_state
+  - project_timesheet_time_control
   - sale_project_task_recurrency
   - sale_project_reimbursement_cost
 reporting-engine:
