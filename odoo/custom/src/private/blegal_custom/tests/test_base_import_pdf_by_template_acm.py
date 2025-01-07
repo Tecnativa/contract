@@ -100,13 +100,13 @@ class TestBaseImportPdfByTemplateAcm(TestBaseImportPdfByTemplateBase):
         record = self.env[res["res_model"]].browse(res["res_id"])
         self.assertIn(attachment, record.attachment_ids)
         self.assertEqual(record.move_type, "in_invoice")
-        self.assertEqual(record.ref, "202407")
-        self.assertEqual(record.invoice_date, datetime.date(2024, 7, 1))
+        self.assertEqual(record.ref, "202501")
+        self.assertEqual(record.invoice_date, datetime.date(2025, 1, 1))
         self.assertEqual(record.partner_id, self.partner)
         self.assertEqual(len(record.invoice_line_ids), 1)
         self.assertEqual(record.invoice_line_ids.product_id, self.product)
         self.assertEqual(record.invoice_line_ids.quantity, 1)
-        self.assertEqual(record.invoice_line_ids.price_unit, 801.40)
+        self.assertAlmostEqual(record.invoice_line_ids.price_unit, 813.42)
 
     def test_account_invoice_acm_quipu(self):
         self._set_template_values("account_move_quipu")
