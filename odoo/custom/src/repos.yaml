@@ -15,6 +15,16 @@
     # Example of a merge of the PR with the number <PR>
     # - oca refs/pull/<PR>/head
 
+bank-payment:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/bank-payment.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/1395/head # account_banking_sepa_credit_transfer: Fix tests
+
 project:
   defaults:
     depth: $DEPTH_MERGE
