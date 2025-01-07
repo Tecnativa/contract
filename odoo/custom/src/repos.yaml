@@ -12,19 +12,8 @@
   target: ocb $ODOO_VERSION
   merges:
     - ocb $ODOO_VERSION
-    - odoo refs/pull/188634/head # Fix import
     # Example of a merge of the PR with the number <PR>
     # - oca refs/pull/<PR>/head
-
-edi:
-  defaults:
-    depth: $DEPTH_MERGE
-  remotes:
-    origin: https://github.com/OCA/edi.git
-  target: origin $ODOO_VERSION
-  merges:
-    - origin $ODOO_VERSION
-    - origin refs/pull/1056/head # base_import_pdf_by_template_account
 
 project:
   defaults:
@@ -35,7 +24,6 @@ project:
   merges:
     - origin $ODOO_VERSION
     - origin refs/pull/1388/head # sale_project_reimbursement_cost
-    - origin refs/pull/1396/head # sale_project_task_recurrency, force a specific month to quarter and semester
 
 server-backend:
   defaults:
