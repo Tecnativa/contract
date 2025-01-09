@@ -91,6 +91,7 @@ server-brand:
 server-ux:
   - base_technical_features
   - date_range
+  - server_action_mass_edit
 social:
   - mail_notification_custom_subject
 web:

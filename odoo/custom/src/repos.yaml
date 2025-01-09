@@ -25,6 +25,16 @@ bank-payment:
     - origin $ODOO_VERSION
     - origin refs/pull/1395/head # account_banking_sepa_credit_transfer: Fix tests
 
+contract:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/contract.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/1177/head # 17.0-IMP-contract-terminate-last_invoice-date
+
 project:
   defaults:
     depth: $DEPTH_MERGE
