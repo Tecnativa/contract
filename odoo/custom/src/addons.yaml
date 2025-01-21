@@ -95,8 +95,10 @@ server-ux:
 social:
   - mail_notification_custom_subject
 web:
+  - web_dialog_size
   - web_environment_ribbon
   - web_favicon
+  - web_m2x_options
   - web_no_bubble
   - web_refresher
   - web_responsive
