@@ -35,6 +35,7 @@ contract:
     - origin $ODOO_VERSION
     - origin refs/pull/1177/head # 17.0-IMP-contract-terminate-last_invoice-date
     - origin refs/pull/1185/head # product_contract: Allow creating sales orders with lines that lack a contract template
+    - origin refs/pull/1188/head # 17.0-FIX-product_contract-compute-dates
 
 project:
   defaults:
