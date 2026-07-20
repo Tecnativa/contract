@@ -10,10 +10,10 @@
 {
     "name": "Contract Payment Mode",
     "summary": "Payment mode in contracts and their invoices",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "author": "Domatix, " "Tecnativa, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/contract",
-    "depends": ["contract", "account_payment_partner"],
+    "depends": ["contract", "ilex_account"],
     "category": "Sales Management",
     "license": "AGPL-3",
     "data": ["views/contract_view.xml"],
